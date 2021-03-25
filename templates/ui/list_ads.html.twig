@@ -1,0 +1,50 @@
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{asset('assets/css/list_ads.css')}}">
+{% endblock %}
+<section class="list_ads">
+	<div class="container">
+		<div class="text-center mb-5">
+						<h2 class="display-20 display-md-18 display-lg-16">{{titleOfList}}</h2>
+		</div>
+		<div class="row">
+	{% if listAds is defined  %}	
+
+	  {% for ad in listAds %}
+		  
+	 
+			<div class="col-lg-4 col-md-6 mb-2-6   mb-3">
+				<article class="card card-style2">
+					<div class="card-img">
+                    
+					{% if ad.images[0] is defined %}
+					        {% set firstImg = ad.images[0] %}
+                         	<img class=" card-img-top rounded-top" src="{{asset('uploads/'~ firstImg.url)}}" alt="{{firstImg.titleImage}}">
+  
+                    {% endif %}
+				
+					
+						<div class="date">
+							<span>{{ad.createAt|date("j")}}</span>{{ad.createAt|date("F")}}</div>
+					</div>
+					<div class="card-body">
+						<h3 class="h5">
+							<a href="{{path('show_ad' , {slug : ad.slug})}}">{{ad.title}}</a>
+						</h3>
+						<p class="display-30">{{ad.introduction}}</p>
+						<a  href="{{path('show_ad' , {slug : ad.slug})}}" class="read-more">read more</a>
+					</div>
+					<div class="card-footer">
+						<ul>
+							<li>{{ad.price}}$ /Night </li>
+							<li>{{ad.rooms}} Rooms</li>
+						</ul>
+					</div>
+				</article>
+			</div>
+			 {% endfor %}
+	{% endif %}	
+		</div>
+	</div>
+</section>
+{{ knp_pagination_render(listAds) }}

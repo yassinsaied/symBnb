@@ -1,0 +1,75 @@
+{% extends "base.html.twig" %}
+
+
+
+{% block stylesheets %}
+	<link href="{{asset('assets/css/form.css')}}" media="all" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% form_theme formEditAd _self %}
+
+{% block body %}
+	<div class="container">
+
+		{{ form_start(formEditAd) }}
+
+		{{form_widget(formEditAd)}}
+
+		{{ form_end(formEditAd) }}
+
+	</div>
+{% endblock body %}
+
+
+{% block _ad_images_widget %}
+
+ <p>Add multi Images for your AD</p>
+ <div class="error-file ">
+    <span class="invalid-feedback">
+      <span>
+                    <span class="form-error-icon badge badge-danger text-uppercase">Error</span>
+                    <span class="form-error-message"></span>
+       </span>
+    </span>
+</div>
+
+	<div class="row dropzone">
+       
+    	{{ form_widget(form) }}
+
+	</div>
+
+	<button type="button" class="browse btn btn-primary" id="ad_image_button">Browse...</button>
+    <input type="hidden" value="0" id="counter-widget"/>
+
+{% endblock %}
+
+{% block _ad_images_entry_widget  %}
+        {# {{dump(form.vars.value )}} #}
+        {% if form.vars.value.url is defined  %}	
+              {{ form_widget(form.imagefile , {'value' : form.vars.value.url}) }}
+              <div class="col-2 frame-image"> <div class="file-content"> <img  src="{{asset('uploads/' ~ form.vars.value.url)}}"/> </div> <div class="d-flex justify-content-end"><a class="remove-image" id="{{id}}"><i class="fas fa-trash-alt"></i></a></div> </div>
+         
+     {% else %} 
+
+	{{ form_widget(form.imagefile) }}
+
+      {% endif %} 
+
+{% endblock %}
+
+
+{% block _ad_images_entry_row %}
+   
+	<div class="form-group" id="block_{{id}}">
+		{{ form_widget(form) }}
+	</div>
+{% endblock %}
+
+
+{% block javascripts %}
+
+<script src="{{asset('assets/js/multy-images-form.js')}}"></script>
+
+
+{% endblock %}

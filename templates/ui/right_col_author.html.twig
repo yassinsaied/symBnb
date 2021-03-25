@@ -1,0 +1,45 @@
+<div class="col-12 col-sm-12 col-md-4 col-lg-4">
+ 
+ 	<div class="card mb-3 pt-3 pb-3">
+				
+					<div class="card-body pt-2 pb-2">
+						<div class="d-flex">
+							​<picture>
+								<source srcset="{{asset('avatars/avatar_2x.png')}}" type="image/png">
+								<img src="{{asset('avatars/' ~ author.avatar)}}" class="rounded-circle img-fluid img-thumbnail" alt="...">
+							</picture>
+							<div class="ml-3 w-100">
+								<h4 class="mb-0 mt-0">{{author.fullName}}</h4>
+								<span>Senior Journalist</span>
+								<span>Senior Journalist</span>
+								<span>Senior Journalist</span>
+								<div class="p-2 mt-2  d-flex justify-content-between rounded stats">
+									<div class="d-flex flex-column mr-2">
+										<span class="articles">
+											<i class="fas fa-ad"></i>
+											</span>
+										<span class="number1">38</span>
+									</div>
+									<div class="d-flex flex-column mr-2">
+										<span class="followers">
+											<i class="fa fa-users"></i>
+											</span>
+										<span class="number2">980</span>
+									</div>
+									<div class="d-flex flex-column">
+										<span class="rating">
+											<i class="fas fa-star-half-alt"></i></span>
+										<span class="number3">8.9</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<hr>
+						<p class="card-text">{{author.descreption}}</p>
+
+
+					</div>
+				</div>
+
+
+</div>

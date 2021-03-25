@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>
+			{% block title %}
+				Welcome!
+			{% endblock %}
+		</title>
+		<link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/base.css')}}">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
+
+		
+    {% block stylesheets %}{% endblock %}
+		</head>
+		<body>
+			{% block header %}
+				{% include "ui/main_menu.html.twig" %}
+			{% endblock %}
+			{% block body %}{% endblock %}
+			{% block footer %}
+				{% include "ui/footer.html.twig" %}
+			{% endblock %}
+
+
+			<script src="{{asset('assets/js/jquery-3.3.1.min.js')}}" crossorigin="anonymous"></script>
+			<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+	        <script src="{{asset('assets/js/popper.min.js')}}"></script>
+		    <script src="{{asset('assets/js/jquery.validate.min.js')}}"></script>
+			<script src="{{asset('assets/js/main.js')}}"></script>
+		
+		
+			
+		
+
+           
+			{% block javascripts %}{% endblock %}
+		</body>
+
+	</html>

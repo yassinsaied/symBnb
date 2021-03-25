@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg  navbar-dark bg-primary">
+	<a class="navbar-brand" href="{{path('home_page' )}}">SymBnb</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarColor03">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+				<a class="nav-link" href="{{path('home_page' )}}">Home
+
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{path('list_ads')}}">Best Ads</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">Pricing</a>
+			</li>
+
+		</ul>
+
+
+		<ul class="navbar-nav ml-auto">
+
+			{% if app.user %}
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">My Profile</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="{{path('my_profile')}}">My Profile</a>
+						<a class="dropdown-item" href="{{path('edit_profile')}}">Edit My Profile</a>
+						<a class="dropdown-item" href="{{path('update_password')}}">Update My Password</a>
+					</div>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{path('logout')}}">Logout</a>
+				</li>
+
+			{% else %}
+				<li class="nav-item">
+					<a class="nav-link" href="{{path('login')}}">Sign in</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{path('register')}}">Sign up</a>
+				</li>
+			{% endif %}
+		</ul>
+
+	</div>
+</nav>

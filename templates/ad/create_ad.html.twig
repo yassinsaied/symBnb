@@ -1,0 +1,63 @@
+{% extends "base.html.twig" %}
+
+
+{% block stylesheets %}
+	<link href="{{asset('assets/css/form.css')}}" media="all" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% form_theme formCreateAd _self %}
+
+{% block body %}
+	<div class="container">
+
+		{{ form_start(formCreateAd) }}
+
+		{{form_widget(formCreateAd)}}
+
+		{{ form_end(formCreateAd) }}
+
+	</div>
+{% endblock body %}
+
+
+{% block _ad_images_widget %}
+
+ <p>Add multi Images for your AD</p>
+ <div class="error-file ">
+    <span class="invalid-feedback">
+      <span>
+                    <span class="form-error-icon badge badge-danger text-uppercase">Error</span>
+                    <span class="form-error-message"></span>
+       </span>
+    </span>
+</div>
+
+	<div class="row dropzone">
+		{{ form_widget(form) }}
+
+	</div>
+
+	<button type="button" class="browse btn btn-primary" id="ad_image_button">Browse...</button>
+    <input type="hidden" value="0" id="counter-widget"/>
+
+{% endblock %}
+
+{% block _ad_images_entry_widget %}
+
+	{{ form_widget(form.imagefile) }}
+
+{% endblock %}
+
+
+{% block _ad_images_entry_row %}
+	<div class="form-group" id="block_{{id}}">
+		{{ form_widget(form) }}
+	</div>
+{% endblock %}
+
+
+{% block javascripts %}
+
+<script src="{{asset('assets/js/multy-images-form.js')}}"></script>
+
+{% endblock %}

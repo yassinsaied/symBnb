@@ -1,0 +1,268 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{asset('assets/css/show.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/css/bootstrap-datepicker.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/css/form.css')}}">
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="container">
+
+		{% for message in app.flashes('warning') %}
+			<div class="alert alert-warning alert-dismissible fade show" role="alert">
+				{{ message }}
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		{% endfor %}
+
+
+		<div class="row">
+			<div class=" col-12 col-md-8 col-sm-12 col-lg-8">
+				<div class="card mb-3">
+					<div class="card-header disabled d-flex justify-content-between">
+					<span class="title">{{ad.title}}</span>
+					
+					<div class="rating ml-auto d-flex justify-content-between">
+                     <span class="mr-1"><small> {{ad.ratings|length}} votes </small></span> 
+					<div class="d-flex flex-column">
+					 <div class="">
+						{% for i  in 1..5 %}
+                 	      {% if i <= ad.notRating %}
+						      <span ><i class="text-warning fa fa-star"></i></span>
+							  {% else %}
+								  <span><i class="far fa-star"></i></span>  
+						 {% endif %}	
+						{% endfor %}
+						</div>
+						 <div class="text-center"> <small>Average {{ad.notRating }} /5 </small> </div>
+                   </div>
+					 
+					
+					</div>
+					
+					
+					</div>
+					<div class="card-body">
+						
+							<div class="pt-0 pr-2 pl-2 pb-2 mt-2  d-flex justify-content-between">
+								<div class="date">
+									<span class="">
+										<i class="far fa-calendar-alt d-inline"></i>
+										{{ad.createAt|date("j")}}
+										{{ad.createAt|date("F")}}
+										{{ad.createAt|date("Y")}}
+									</span>
+								</div>
+
+								{% if app.user and  app.user == ad.author %}
+									<div class="ml-auto">
+										<a href="{{path('edit_ad' , {slug: ad.slug})}}" class="btn btn-success btn-sm">Update</a>
+										<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete-ad">Delete</button>
+									</div>
+								{% endif %}
+							</div>
+
+					</div>
+
+					<div id="carouselAd" class="carousel slide" data-ride="carousel">
+						<div class="carousel-inner">
+
+
+							{% for img in ad.images %}
+
+
+								<div class="carousel-item {% if loop.index0 == 0 %} active {% endif %}">
+									<img class="d-block w-100" src="{{asset('uploads/' ~ img.url)}}" alt="{{img.titleImage}}">
+								</div>
+							{% endfor %}
+
+							<a class="carousel-control-prev" href="#carouselAd" role="button" data-slide="prev">
+								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+								<span class="sr-only">Previous</span>
+							</a>
+							<a class="carousel-control-next" href="#carouselAd" role="button" data-slide="next">
+								<span class="carousel-control-next-icon" aria-hidden="true"></span>
+								<span class="sr-only">Next</span>
+							</a>
+						</div>
+
+
+						<div class="card-body pt-2 pb-2">
+							<p class="card-text">{{ad.introduction}}</p>
+						</div>
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item">{{ad.rooms}}
+								Room</li>
+							<li class="list-group-item">{{ad.price}}
+								$</li>
+							<li class="list-group-item">Vestibulum at eros</li>
+						</ul>
+						<div class="card-footer text-muted">
+							<h4 class="card-title">Details</h4>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-body">
+							<div class="description-ad">
+								{{ad.description|raw}}
+							</div>
+
+
+							{% if app.user != ad.author and is_granted("ROLE_USER") %}
+
+				
+								  	<a class="btn btn-primary" data-toggle="collapse" href="#book-Form" role="button" aria-expanded="false" aria-controls="book-Form">Book Now</a>
+
+							{% elseif  app.user != ad.author and is_granted("IS_AUTHENTICATED_ANONYMOUSLY ")  %} 
+
+									  <a class="btn btn-primary" href="{{path('login')}}" role="button" aria-expanded="false" aria-controls="book-Form">Book Now</a>
+							
+							{% endif %}
+							   
+							
+
+							<div class="mt-3 collapse multi-collapse" id="book-Form">
+
+								{{ form_start(formCreateBook) }}
+
+								<div class="row">
+									<div class="col-6">
+										{{form_row(formCreateBook.startDate)}}
+									</div>
+									<div class="col-6">
+										{{form_row(formCreateBook.endDate)}}
+									</div>
+								</div>
+								{{form_row(formCreateBook.comment)}}
+								<div class="row">
+
+
+									<div class="input-group mb-3 col-12 col-md-6 col-lg-4 col-sm-12">
+
+										<input type="text" class="form-control" aria-label="price By NIght" readonly="" value="{{ad.price}}" id="price-night">
+										<div class="input-group-append">
+											<span class="input-group-text">
+												$ By Night</span>
+										</div>
+									</div>
+
+
+									<div class="input-group mb-3 col-12 col-md-2 col-lg-4 col-sm-12">
+
+										<input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" readonly="" value="" id="days-book">
+										<div class="input-group-append">
+											<span class="input-group-text">Days</span>
+										</div>
+									</div>
+
+
+									<div class="input-group mb-3 col-12 col-md-6 col-lg-4 col-sm-12">
+										<div class="input-group-prepend">
+											<span class="input-group-text">Total :
+											</span>
+										</div>
+										<input type="text" class="form-control" aria-label="Amount" readonly="" value="" id="amount-book">
+										<div class="input-group-append">
+											<span class="input-group-text">$</span>
+										</div>
+									</div>
+
+								</div>
+								<input type="submit" value="Make reservation" class="btn btn-success">
+
+								{{ form_end(formCreateBook) }}
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			{% set author = ad.author %}
+			{% include "ui/right_col_author.html.twig" with {author} %}
+		</div>
+
+
+	</div>
+
+	{% block modal %}
+
+		<div class="modal fade" id="delete-ad" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Modal title</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p>Modal body text goes here.</p>
+					</div>
+					<div class="modal-footer">
+						<a href="{{path('remove_ad' , {slug: ad.slug})}}" class="btn btn-danger">Confirmer</a>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	{% endblock %}
+
+{% endblock body %}
+
+
+{% block javascripts %}
+
+	<script src="{{asset('assets/js/bootstrap-datepicker.min.js')}}"></script>
+	<script>
+		var data = {{ notAvailableDays|json_encode|raw }};
+        var desabledDate = $.each($.parseJSON(data), function (i, v) {
+             return v;
+});
+
+$('#bouking_startDate , #bouking_endDate').datepicker({format: 'dd/mm/yyyy', locale: 'fr', datesDisabled: desabledDate});
+
+
+console.log(desabledDate);
+
+
+// var sdFormat = startDate[2]+ '-' + startDate[1]+ '-' + startDate[0];
+$('#bouking_startDate , #bouking_endDate').on('change', calculeDaysAmount);
+
+function calculeDaysAmount() {
+
+const oneDay = 24 * 60 * 60 * 1000;
+const startDate = convertDate($('#bouking_startDate').val());
+const endDate = convertDate($('#bouking_endDate').val());
+
+if (startDate && endDate && startDate < endDate) {
+
+const diffDays = Math.abs((startDate.getTime() - endDate.getTime()) / (oneDay));
+var amount = diffDays * {{ ad.price }}
+$('#days-book').val(diffDays);
+$('#amount-book').val(amount);
+
+}
+
+}
+
+function convertDate(date) {
+
+const strDate = date.split('/');
+const newFormat = strDate[2] + '-' + strDate[1] + '-' + strDate[0];
+const newDate = new Date(newFormat);
+return newDate;
+
+}
+	</script>
+
+{% endblock %}

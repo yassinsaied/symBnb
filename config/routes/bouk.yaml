@@ -1,0 +1,6 @@
+show_bouk: 
+  path: /book/{id}
+  controller : App\Controller\BoukingController::show
+  requirements:
+        id: '\d+'
+  

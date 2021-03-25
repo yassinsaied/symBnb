@@ -1,0 +1,22 @@
+list_ads:
+  path: /ads
+  controller: App\Controller\AdController::ads
+
+create_ad:
+  path: /ad/newad
+  controller: App\Controller\AdController::createAd  
+
+edit_ad:
+  path: /ad/{slug}/edit
+  controller: App\Controller\AdController::editAd
+
+
+show_ad:
+  path: /ad/{slug}  
+  controller: App\Controller\AdController::showAd
+
+remove_ad:
+  path: /ad/{slug}/remove
+  controller: App\Controller\AdController::removeAd  
+
+

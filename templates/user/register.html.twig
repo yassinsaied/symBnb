@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+				 create account
+			{% endblock %}
+
+{% block stylesheets %}{% endblock %}
+
+
+{% block body %}
+
+<div class="container">
+
+{{form_start(registrationForm   , {'attr' : {'id' : 'register-form'} }         )}}
+
+     {{form_widget(registrationForm)}}
+
+         <input type="submit" class="btn btn-primary" value="create account" id="submit-form">
+
+{{form_end(registrationForm)}}
+
+
+
+</div>
+
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+<script src="{{asset('assets/js/validate-form.js')}}"></script>
+
+{% endblock %}

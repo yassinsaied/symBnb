@@ -1,0 +1,15 @@
+edit_profile:
+  path: /profile/edit
+  controller: App\Controller\UserController::editProfile
+
+update_password:
+  path: /profile/update-password
+  controller: App\Controller\UserController::updatePassword
+
+profile:
+  path: /profile/{slug}
+  controller: App\Controller\UserController::showProfile 
+
+my_profile:
+  path: /profile
+  controller: App\Controller\UserController::myProfile 

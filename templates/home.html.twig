@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+{% block title %}Home
+{% endblock %}
+{% block stylesheets %}
+
+	<link rel="stylesheet" href="{{asset('assets/css/bootstrap-slider.min.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/css/bootstrap-datepicker.css')}}">
+
+{% endblock %}
+
+{% block body %}
+	{% for message in app.flashes('success') %}
+		<div class="alert alert-info alert-dismissible fade show" role="alert">
+			{{ message }}
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+	{% endfor %}
+	<div class"slidshow-home">
+		{% include "ui/slidshow.html.twig"  %}
+		{% include "ui/horizontal_form_search.html.twig" with { minPrice : minPrice,  maxPrice : maxPrice,} %}
+												
+	</div>
+
+	<div class="container ">
+		{% include "ui/list_ads.html.twig" with { listAds: listAdsPaginator ,'titleOfList':'Most Recent Ads'}%}
+			                                    
+					
+	   
+	</div>
+
+
+{% endblock body %}
+
+{% block javascripts %}
+	<script src="{{asset('assets/js/bootstrap-datepicker.min.js')}}"></script>
+	<script src="{{asset('assets/js/bootstrap-slider.min.js')}}"></script>
+
+	<script>
+
+		$('#Check-in, #Check-out').datepicker({format: 'dd/mm/yyyy', locale: 'fr'});
+
+      $("#ex2").slider({});
+	</script>
+{% endblock %}

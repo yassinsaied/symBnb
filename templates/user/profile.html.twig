@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Profile
+{% endblock %}
+{% block stylesheets %}{% endblock %}
+{% block body %}
+	<div class="container">
+
+		<div class="jumbotron">
+
+			<div class="row profile-blog mb-2">
+				<div class="col-12 col-sm-12 col-md-2 col-lg-2">
+					<a href="{{path( 'profile' , {'slug' : user.slug } )}}">
+						<img class="img-circle img-thumbnail" src="{{asset('avatars/' ~ user.avatar)}}" alt="user Picture"></a>
+				</div>
+				<div class="col-12 col-sm-12 col-md-2 col-lg-2 pt-md-5 pt-lg-5 pl-md-0 pl-lg-0">
+					<span class="d-block">
+						<a href="{{path( 'profile' , {'slug' : user.slug } )}}">{{user.firstName ~ " " ~ user.lastName}}
+						</a>
+					</span>
+					<span class="d-block">
+						<i class="fa fa-map-marker"></i>
+						Location
+					</span>
+				</div>
+			</div>
+			<p class="card-text">{{user.descreption}}</p>
+			<hr>
+			<ul class="rs d-flex list-inline">
+				<li class="mr-2">
+					<i class="fa fa-bell"></i>
+					<a href="#">{{user.ads |length }} Ads</a>
+				</li>
+				<li class="mr-2">
+					<i class="fa fa-users"></i>
+					<a href="#">54 Followers</a>
+				</li>
+				<li class="mr-2">
+					<i class="fab fa-twitter"></i>
+					<a href="#">Retweet</a>
+				</li>
+			</ul>
+		</div>
+    {% set title = 'Ads of ' ~ user.firstName ~ " " ~ user.lastName %}
+    {% include "ui/list_ads.html.twig" with {'listAds' :  adsUserPaginator , 'titleOfList' : title}  %}
+
+
+
+	</div>
+{% endblock %}
+
+
+{% block javascripts %}{% endblock %}

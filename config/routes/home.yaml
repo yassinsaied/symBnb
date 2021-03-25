@@ -1,0 +1,7 @@
+home_page:
+  path: /
+  controller: App\Controller\HomeController::home
+
+
+
+

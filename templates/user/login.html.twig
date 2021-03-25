@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}sign up
+{% endblock %}
+
+
+{% block stylesheets %}
+	<link href="{{asset('assets/css/form.css')}}" media="all" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+
+{% block body %}
+	<div class="container">
+
+
+		<div class="form-box card border-light   mb-3 col-6">
+			<div class="card-header d-flex justify-content-between">
+				<h4 class="card-title">sign up</h4>
+				<a class="forget-password" href="{{path('forget_password')}}" class="card-title">Forget Password</a>
+			</div>
+			<div class="card-body">
+
+				{% if error is defined and error != null %}
+					<div class="alert alert-dismissible alert-danger">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<strong>Failed to connect !</strong>
+						{% if error.messageKey is defined    %}
+							{{ error.messageKey|trans(error.messageData, 'security') }}
+						{% else %}
+							{{error}}
+						{% endif %}
+					</div>
+
+				{% endif %}
+
+				{% if validationAccountMsg is defined   %}
+
+					<div class="alert alert-dismissible alert-success">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+
+						{{validationAccountMsg}}
+					</div>
+				{% endif %}
+
+
+				<form id="loginform" class="form-horizontal" role="form" action="{{ path('login') }}" method="post">
+
+
+					<div class="form-group">
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text bg-primary" id="basic-addon1">
+									<i class="fa fa-user" aria-hidden="true"></i>
+								</span>
+							</div>
+							<input type="text" class="form-control" name="_username" placeholder="Username" aria-label="Username" value="{{lastUserName}}" required>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text bg-primary" id="basic-addon1">
+									<i class="fas fa-unlock-alt"></i>
+								</span>
+							</div>
+							<input type="password" class="form-control" name="_password" placeholder="password" aria-label="password" required>
+						</div>
+					</div>
+					<div class="input-group">
+						<div class="checkbox">
+							<label>
+								<input id="login-remember" type="checkbox" name="remember" value="1">
+								Remember me
+							</label>
+						</div>
+					</div>
+
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+
+					<div
+						style="margin-top:10px" class="form-group">
+						<!-- Button -->
+
+						<div class="col-sm-12 controls">
+							<button type="submit" class="btn btn-primary">login</button>
+						</a>
+						<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>
+
+					</div>
+				</div>
+
+			</form>
+
+		</div>
+	</div>
+
+</div>{% endblock %}{% block javascripts %}
+
+<script src="{{asset('assets/js/validate-form.js')}}"></script>{% endblock %}

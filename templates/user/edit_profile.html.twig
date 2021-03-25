@@ -1,0 +1,61 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Edit Profile
+{% endblock %}
+
+{% block stylesheets %}
+	<link href="{{asset('assets/css/form.css')}}" media="all" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% form_theme editProfileForm _self %}
+
+{% block body %}
+
+	{% if app.user.avatar != null %}
+
+		{% set pathAvatar =  app.user.avatar %}
+
+	{% else %}
+
+		{% set pathAvatar = "avatar_2x.png" %}
+
+	{% endif %}
+
+	<div class="container">
+		<div class="form-box mb-3 ">
+			{{form_start(editProfileForm   , {'attr' : {'id' : 'edit-profil-form'} }         )}}
+			<div class="row">
+				<div class="col-md-3 col-lg-2 col-sm-4 col-4 avatar-col">
+					<img src="{{asset('/avatars/' ~ pathAvatar) }}" class="img-circle img-thumbnail" alt="avatar">
+					<a class="camera-icon">
+						<i class="fas fa-camera"></i>
+					</a>
+
+				</div>
+				<div class="col-md-3 col-lg-2 col-sm-4 description-user">
+					<p class="text-secondary mb-1">Full Stack Developer</p>
+					<p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+				</div>
+			</div>
+
+
+			{{form_widget(editProfileForm)}}
+
+			<input type="submit" class="btn btn-primary" value="create account" id="submit-form">
+
+			{{form_end(editProfileForm)}}
+
+
+		</div>
+	</div>
+
+{% endblock %}
+
+
+{% block javascripts %}
+	<script src="{{asset('assets/js/jquery.validate.file.js')}}"></script>
+	<script src="{{asset('assets/js/edit-profile.js')}}"></script>
+
+
+{% endblock %}
