@@ -3,5 +3,5 @@
 {% block title %}Best ads{% endblock %}
 
 {% block body %}
-  {% include "ui/list_ads.html.twig" with {listAds , 'titleOfList' : 'Best ads' } %}
+  {% include "ui/list_ads.html.twig" with {listAds:bestAdsPaginator , 'titleOfList' : 'Best ads' } %}
 {% endblock %}

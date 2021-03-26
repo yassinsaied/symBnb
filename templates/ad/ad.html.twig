@@ -118,7 +118,7 @@
 				
 								  	<a class="btn btn-primary" data-toggle="collapse" href="#book-Form" role="button" aria-expanded="false" aria-controls="book-Form">Book Now</a>
 
-							{% elseif  app.user != ad.author and is_granted("IS_AUTHENTICATED_ANONYMOUSLY ")  %} 
+							{% elseif  app.user != ad.author and is_granted("IS_AUTHENTICATED_ANONYMOUSLY")  %} 
 
 									  <a class="btn btn-primary" href="{{path('login')}}" role="button" aria-expanded="false" aria-controls="book-Form">Book Now</a>
 							

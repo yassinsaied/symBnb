@@ -15,18 +15,20 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 class AdController extends AbstractController
 {
-
     private $entityManager;
     private $flashBag;
+    private $paginator;
 
-    public function __construct(EntityManagerInterface $entityManager, FlashBagInterface $flashBag)
-    {
+    public function __construct(EntityManagerInterface $entityManager,  FlashBagInterface $flashBag, PaginatorInterface $paginator)
+      
+   {
         $this->entityManager = $entityManager;
         $this->flashBag = $flashBag;
-
+        $this->paginator = $paginator;
     }
 
     /**
@@ -34,16 +36,19 @@ class AdController extends AbstractController
      *
      * @return Response
      */
-    public function ads(): Response
+    public function ads(Request $request): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_USER');
-
         $listAds = $this->getDoctrine()
             ->getRepository(Ad::class)
-            ->findAll();
+            ->findBy([], ['price' => 'ASC']);
+
+        $bestAdsPaginator = $this->paginator->paginate(
+            $listAds,
+            $request->query->getInt('page', 1)
+        );
 
         return $this->render('ad/ads.html.twig', [
-            'listAds' => $listAds,
+            'bestAdsPaginator' => $bestAdsPaginator,
         ]);
     }
 
@@ -55,11 +60,9 @@ class AdController extends AbstractController
      */
     public function showAd(Ad $ad, Request $request)
     {
-     
-
         $notAvailableDays = $ad->notAvailableDays();
-        $encoders = array(new JsonEncoder());
-        $normalizers = array(new DateTimeNormalizer('d/m/Y'));
+        $encoders = [new JsonEncoder()];
+        $normalizers = [new DateTimeNormalizer('d/m/Y')];
 
         $serializer = new Serializer($normalizers, $encoders);
         $jsonResult = $serializer->serialize($notAvailableDays, 'json');
@@ -69,43 +72,31 @@ class AdController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $user = $this->getUser();
             $bouk->setBouker($user);
             $bouk->setAd($ad);
             if (!$bouk->getVerifyDate()) {
-
                 $this->flashBag->add(
                     'warning',
                     'These dates are already taken'
                 );
-
             } else {
-
                 $this->entityManager->persist($bouk);
                 $this->entityManager->flush();
 
-               
-                
-                return $this->redirect($this->generateUrl('show_bouk' , [
-                  
-                    
-                    'id'  => $bouk->getId()
-
-                ])
+                return $this->redirect(
+                    $this->generateUrl('show_bouk', [
+                        'id' => $bouk->getId(),
+                    ])
                 );
-
             }
-
         }
 
-        return $this->render("ad/ad.html.twig", [
+        return $this->render('ad/ad.html.twig', [
             'ad' => $ad,
             'formCreateBook' => $form->createView(),
             'notAvailableDays' => $jsonResult,
-
         ]);
-
     }
 
     /**
@@ -121,13 +112,10 @@ class AdController extends AbstractController
         $form = $this->createForm(AdType::class, $ad);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
             $images = $form->get('images')->getData();
             foreach ($images as $image) {
-
                 $image->setAd($ad);
                 $this->entityManager->persist($image);
-
             }
             $user = $this->getUser();
             $ad->setAuthor($user);
@@ -136,40 +124,31 @@ class AdController extends AbstractController
 
             return $this->redirectToRoute('show_ad', [
                 'slug' => $ad->getSlug(),
-
             ]);
-
         }
 
         return $this->render('ad/create_ad.html.twig', [
-
             'formCreateAd' => $form->createView(),
-
         ]);
     }
 
     public function editAd(Ad $ad, Request $request)
     {
-
         $this->denyAccessUnlessGranted('edit', $ad);
 
         $form = $this->createForm(AdType::class, $ad);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
             $images = $form->get('images')->getData();
             foreach ($images as $image) {
-
                 $image->setAd($ad);
                 $this->entityManager->persist($image);
-
             }
 
             $this->entityManager->flush();
         }
 
         return $this->render('ad/edit_ad.html.twig', [
-
             'formEditAd' => $form->createView(),
         ]);
     }
@@ -177,7 +156,7 @@ class AdController extends AbstractController
     private function uploadFile($imageUrl)
     {
         $fileImage = new File($imageUrl);
-        $newName = md5(uniqid()) . "." . $fileImage->guessExtension();
+        $newName = md5(uniqid()) . '.' . $fileImage->guessExtension();
         $fileImage->move($this->getParameter('images_directory'), $newName);
 
         return $newName;
@@ -189,13 +168,8 @@ class AdController extends AbstractController
         $this->entityManager->remove($ad);
         $this->entityManager->flush();
 
-        $this->flashBag->add(
-            'success',
-            'successfully Ad deleted !'
-        );
+        $this->flashBag->add('success', 'successfully Ad deleted !');
 
         return $this->redirectToRoute('home_page');
-
     }
-
 }

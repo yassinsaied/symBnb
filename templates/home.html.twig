@@ -38,9 +38,26 @@
 	<script src="{{asset('assets/js/bootstrap-slider.min.js')}}"></script>
 
 	<script>
-
+$(document).ready(function() {
 		$('#Check-in, #Check-out').datepicker({format: 'dd/mm/yyyy', locale: 'fr'});
+         $("#ex2").slider({});
 
-      $("#ex2").slider({});
+
+  
+	
+  $('.list-view').on('click' , function() {
+
+     $('.list-card-ads .card-a').removeClass().addClass('col-lg-12 col-md-12 mb-2-6 mb-3 card-a');       
+
+  });
+
+
+    $('.grid-view').on('click' , function() {
+
+     $('.list-card-ads .card-a').removeClass().addClass('col-lg-4 col-md-6 mb-2-6 mb-3 card-a');       
+  });
+  
+});
+
 	</script>
 {% endblock %}
