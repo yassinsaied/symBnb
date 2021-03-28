@@ -36,26 +36,98 @@
 {% block javascripts %}
 	<script src="{{asset('assets/js/bootstrap-datepicker.min.js')}}"></script>
 	<script src="{{asset('assets/js/bootstrap-slider.min.js')}}"></script>
+	<script src="{{asset('assets/js/purl.js')}}"></script>
+
 
 	<script>
 $(document).ready(function() {
-		$('#Check-in, #Check-out').datepicker({format: 'dd/mm/yyyy', locale: 'fr'});
-         $("#ex2").slider({});
+	let styleView ;
+	$('#Check-in, #Check-out').datepicker({format: 'dd/mm/yyyy', locale: 'fr'});
+    $("#ex2").slider({});
+
+    updateListeView()
+
+   $('.page-link').focus(function() {
+     let url = $(this).attr('href') ;
+	 let  queryParams    = $.url(url).param();
+	 queryParams.view = styleView;
+	 
+	 let newUrl = "?" + $.param(queryParams);
+   	 $(this).attr('href' , newUrl ) ;
 
 
-  
+   })
+
+
 	
   $('.list-view').on('click' , function() {
-
-     $('.list-card-ads .card-a').removeClass().addClass('col-lg-12 col-md-12 mb-2-6 mb-3 card-a');       
+     	mofifateView(false);
 
   });
 
 
     $('.grid-view').on('click' , function() {
-
-     $('.list-card-ads .card-a').removeClass().addClass('col-lg-4 col-md-6 mb-2-6 mb-3 card-a');       
+           mofifateView(true);
   });
+
+
+
+   function updateListeView() {
+       
+	    let currentUrl = window.location.href; 
+	    let view  =  $.url(currentUrl).param('view');
+	
+		if(view === 'list') {
+          
+	       mofifateView(false) ;
+
+		}else {
+		   mofifateView(true) ;
+ 	}
+
+    }
+
+   function mofifateView (listOrGrid) {
+     let style ;
+
+	if(listOrGrid){
+      style = 'col-lg-4 col-md-6 mb-2-6 mb-3 card-a' ;
+	  styleView = 'grid';
+	 
+	}else {
+
+		 style = 'col-lg-12 col-md-12 mb-2-6 mb-3 card-a';
+		 styleView = 'list';
+	}
+
+    $('.list-card-ads .card-a').removeClass().addClass(style); 
+
+
+   }
+
+
+$('.list_ads').on('click', "a.sortable" , function(e){
+	console.log($(this).attr('href'));
+$.ajax({
+    type: "GET",
+    url: $(this).attr('href'),
+    })
+    .done(function( msg ) {
+		console.log(msg)
+        //$('body').html(msg);
+    });
+             e.preventDefault();
+});
+
+
+
+
+
+
+
+
+
+
   
 });
 

@@ -136,7 +136,7 @@ class AdRepository extends ServiceEntityRepository
             //   dump($query->getQuery()->getSql());
             //   die;
 
-        return $query->getQuery()->getResult();
+        return $query->getQuery();
 
     }
 }

@@ -6,6 +6,7 @@ use App\Entity\Ad;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class HomeController extends Controller
@@ -56,6 +57,12 @@ class HomeController extends Controller
             $listAds,
             $request->query->getInt('page', 1)
         );
+
+        if ($request->isXmlHttpRequest()) {
+          
+         
+        }
+    
 
         return $this->render('home.html.twig', [
             'listAdsPaginator' => $listAdsPaginator,

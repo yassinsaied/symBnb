@@ -4,8 +4,6 @@ padding-top: 30px;
 
 }
 
-
-
 .card-style2 {
     position: relative;
     display: flex;
@@ -103,4 +101,11 @@ padding-top: 30px;
     color: #00baee;
     font-size: 14px;
     margin-right: 8px;
+}
+
+.item.list-group-item
+{
+	float: none;
+	width: 100%;
+	background-color:green;
 }

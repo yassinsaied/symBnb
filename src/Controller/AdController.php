@@ -3,19 +3,19 @@
 namespace App\Controller;
 
 use App\Entity\Ad;
-use App\Form\AdType;
 use App\Entity\Bouking;
+use App\Form\AdType;
 use App\Form\BoukingType;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Serializer\Serializer;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
-use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\Serializer\Serializer;
 
 class AdController extends AbstractController
 {
@@ -23,9 +23,8 @@ class AdController extends AbstractController
     private $flashBag;
     private $paginator;
 
-    public function __construct(EntityManagerInterface $entityManager,  FlashBagInterface $flashBag, PaginatorInterface $paginator)
-      
-   {
+    public function __construct(EntityManagerInterface $entityManager, FlashBagInterface $flashBag, PaginatorInterface $paginator)
+    {
         $this->entityManager = $entityManager;
         $this->flashBag = $flashBag;
         $this->paginator = $paginator;
@@ -171,5 +170,11 @@ class AdController extends AbstractController
         $this->flashBag->add('success', 'successfully Ad deleted !');
 
         return $this->redirectToRoute('home_page');
+    }
+
+    public function sortListAd(Request $request)
+    {
+          dump();
+          die ;
     }
 }

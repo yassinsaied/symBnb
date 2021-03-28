@@ -20,3 +20,9 @@ remove_ad:
   controller: App\Controller\AdController::removeAd  
 
 
+sort_ad:
+  path: /sortad
+  controller: App\Controller\AdController::sortListAd
+
+
+
