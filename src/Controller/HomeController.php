@@ -60,6 +60,11 @@ class HomeController extends Controller
 
         if ($request->isXmlHttpRequest()) {
           
+
+            return $this->render('ui/list_ads.html.twig', [
+                'listAds' => $listAdsPaginator,
+               
+            ]);
          
         }
     
