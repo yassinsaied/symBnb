@@ -1,4 +1,6 @@
-.list_ads {}
+.list_ads {
+    position: relative;
+}
 
 .card-style2 {
     position: relative;

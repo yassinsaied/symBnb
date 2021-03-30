@@ -87,14 +87,24 @@ $(document).ready(function() {
 
 
     $('.filter-ads').on('click', "a.sortable", function(e) {
-        console.log($(this).attr('href'));
+      
+        $(".loader").show();
         $.ajax({
                 type: "GET",
                 url: $(this).attr('href'),
+                beforeSend: function() {
+                                  
+                    $(".list-card-ads").fadeOut();
+                },
             })
             .done(function(msg) {
-                console.log(msg)
-                $('.list_ads').html(msg);
+             $(".loader").hide();
+             $('.list_ads').fadeIn(4000).html(msg);
+           
+        
+              
+              
+               
             });
         e.preventDefault();
     });

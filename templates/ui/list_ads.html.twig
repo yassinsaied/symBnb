@@ -1,9 +1,9 @@
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{asset('assets/css/list_ads.css')}}">
 {% endblock %}
-<section class="list_ads">
 
-
+<div class="list_ads">
+	<div class="loader">Loading...</div>
 	<div class="row list-card-ads">
 
 
@@ -46,11 +46,10 @@
 				</div>
 			{% endfor %}
 		{% endif %}
+		<div class="col-12">
+			{{ knp_pagination_render(listAds ,null ,{'view': 'grid'}) }}
+		</div>
+
 	</div>
 
-</section>
-
-{{ knp_pagination_render(listAds ,null ,{'view': 'grid'}) }}
-
-
-
+</div>
