@@ -2,6 +2,19 @@
     position: relative;
 }
 
+
+.horz-card .col-6 {
+
+padding-left: 0px;
+padding-right: 0px;
+
+}
+
+
+.horz-card .card-header:first-child {
+   border-radius: inherit;
+}
+
 .card-style2 {
     position: relative;
     display: flex;
@@ -36,7 +49,7 @@
     right: 30px;
     top: 30px;
     z-index: 1;
-    color: #16bae1;
+    color: #e95420;
     overflow: hidden;
     padding-bottom: 10px;
     line-height: 24px;
@@ -57,7 +70,7 @@
     text-align: center;
     padding: 12px;
     margin-bottom: 10px;
-    background-color: #00baee;
+    background-color: #e95420;
     border-radius: 0.25rem;
 }
 
