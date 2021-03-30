@@ -1,8 +1,5 @@
 $(document).ready(function() {
 
-
-
-
     //css of error form  
     jQuery.validator.setDefaults({
         errorElement: 'span',
@@ -17,7 +14,6 @@ $(document).ready(function() {
             $(element).removeClass('is-invalid');
         }
     });
-
 
     // grid list ads 
     let styleView;
@@ -37,15 +33,12 @@ $(document).ready(function() {
 
     $('.list-view').on('click', function() {
         mofifateView(false);
-
     });
 
 
     $('.grid-view').on('click', function() {
         mofifateView(true);
     });
-
-
 
     function updateListeView() {
 
@@ -59,7 +52,6 @@ $(document).ready(function() {
         } else {
             mofifateView(true);
         }
-
     }
 
     function mofifateView(listOrGrid) {
@@ -71,40 +63,30 @@ $(document).ready(function() {
 
         } else {
 
-            style = 'col-lg-12 col-md-12 mb-2-6 mb-3 card-a';
+            style = 'col-lg-12 col-md-12 mb-2-6 mb-3 card-a horz-card';
             styleView = 'list';
         }
 
         $('.list-card-ads .card-a').removeClass().addClass(style);
-
+        $(".horz-card article").children('div').addClass("col-6");
 
     }
 
-
-
-
-
-
+    // filtre result 
 
     $('.filter-ads').on('click', "a.sortable", function(e) {
-      
         $(".loader").show();
         $.ajax({
                 type: "GET",
                 url: $(this).attr('href'),
                 beforeSend: function() {
-                                  
-                    $(".list-card-ads").fadeOut();
+
+                    $(".list-card-ads").fadeOut(3000);
                 },
             })
             .done(function(msg) {
-             $(".loader").hide();
-             $('.list_ads').fadeIn(4000).html(msg);
-           
-        
-              
-              
-               
+                $(".loader").hide();
+                $('.list_ads').hide().html(msg).fadeIn('fast');
             });
         e.preventDefault();
     });
