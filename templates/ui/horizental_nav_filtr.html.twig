@@ -2,11 +2,12 @@
 
 	<div class="form-row align-items-center">
 		<div class="col-auto">
-			<select class="custom-select form-control-sm">
+			<select class="custom-select form-control-sm sortby" >
 				<option selected="">Open this select menu</option>
-				<option value="1">One</option>
-				<option value="2">Two</option>
-				<option value="3">Three</option>
+					{{ knp_pagination_sortable(listAds, 'Low Price', 'a.price' , {'direction': 'asc'}) }}
+					{{ knp_pagination_sortable(listAds, 'High price', 'a.price' , {'direction': 'desc'}) }}
+                    {{ knp_pagination_sortable(listAds, 'Latest Ads', 'a.createAt' , {'direction': 'desc'}) }}
+						
 			</select>
 		</div>
 	</div>
@@ -20,10 +21,5 @@
 			<i class="fa fa-th" aria-hidden="true"></i>
 			Grid</a>
 	</div>
-
-
-	{{ knp_pagination_sortable(listAds, 'Price', 'a.price') }}
-    {{ knp_pagination_sortable(listAds, 'Date', 'a.createAt') }}
-
 
 </nav>

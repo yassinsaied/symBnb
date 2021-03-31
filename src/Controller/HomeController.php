@@ -24,16 +24,16 @@ class HomeController extends Controller
 
     public function home(Request $request, PaginatorInterface $paginator)
     {
-        $checkIn = \DateTime::createFromFormat(
-            'd/m/Y',
-            $request->query->get('Check-in')
-        );
-        $checkOut = \DateTime::createFromFormat(
-            'd/m/Y',
-            $request->query->get('Check-out')
-        );
-        $strSearch = $request->query->get('search');
-        $order = $request->query->get('order');
+        // $checkIn = \DateTime::createFromFormat(
+        //     'd/m/Y',
+        //     $request->query->get('Check-in')
+        // );
+        // $checkOut = \DateTime::createFromFormat(
+        //     'd/m/Y',
+        //     $request->query->get('Check-out')
+        // );
+        // $strSearch = $request->query->get('search');
+        // $order = $request->query->get('order');
 
         $minPrice = $this->entityManger
             ->getRepository(Ad::class)
@@ -42,17 +42,19 @@ class HomeController extends Controller
             ->getRepository(Ad::class)
             ->getMaxPrice();
 
-        $listAds = $this->entityManger
-            ->getRepository(Ad::class)
-            ->searchAds(
-                $strSearch,
-                $minPrice,
-                $maxPrice,
-                $checkIn,
-                $checkOut,
-                $order
-            );
+        // $listAds = $this->entityManger
+        //     ->getRepository(Ad::class)
+        //     ->searchAds(
+        //         $strSearch,
+        //         $minPrice,
+        //         $maxPrice,
+        //         $checkIn,
+        //         $checkOut,
+        //         $order
+        //     );
 
+
+        $listAds = $this->entityManger->getRepository(Ad::class)->findAll();
         $listAdsPaginator = $this->paginator->paginate(
             $listAds,
             $request->query->getInt('page', 1)

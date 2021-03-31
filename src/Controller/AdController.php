@@ -172,9 +172,5 @@ class AdController extends AbstractController
         return $this->redirectToRoute('home_page');
     }
 
-    public function sortListAd(Request $request)
-    {
-          dump();
-          die ;
-    }
+   
 }

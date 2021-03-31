@@ -2,17 +2,14 @@
     position: relative;
 }
 
-
-.horz-card .col-6 {
-
-padding-left: 0px;
-padding-right: 0px;
-
+.horz-card .col-7,
+.horz-card .col-5 {
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
-
 .horz-card .card-header:first-child {
-   border-radius: inherit;
+    border-radius: inherit;
 }
 
 .card-style2 {
@@ -38,6 +35,7 @@ padding-right: 0px;
 
 .card-style2 .card-img img {
     transition: all 0.3s linear 0s;
+    height: 100%;
 }
 
 .card-style2:hover .card-img img {

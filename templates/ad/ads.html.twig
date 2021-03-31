@@ -8,7 +8,7 @@
 		<div class="text-center mb-3">
 			<h2 class="display-20 display-md-18 display-lg-16">Most Recent Ads</h2>
 		</div>
-		{% include "ui/horizental_nav_filtr.html.twig"%}
+		{% include "ui/horizental_nav_filtr.html.twig" with {listAds:bestAdsPaginator}%}
 		{% include "ui/list_ads.html.twig" with {listAds:bestAdsPaginator} %}
 	</div>
 {% endblock %}
