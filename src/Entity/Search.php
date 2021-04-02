@@ -109,5 +109,14 @@ class Search
         return $this;
     }
 
+    public function __toString()
+    {
+
+        if ($this->q){
+            return $this->q;
+        }
+        return '';
+    }
+
 
 }

@@ -1,6 +1,30 @@
 
 <div class="form-serch col-12 col-sm-12 col-md-6 col-lg-6">
-	<form>
+
+		{{ form_start(formSearcht) }}
+
+		{{form_widget(formSearcht)}}
+		<div class="form-group col-md-4 pt-4">
+
+				<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+					Search By Price
+				</button>
+				<div class="collapse pt-2 " id="collapseExample">
+					<div class="d-flex">
+						<span class="pr-2">€ {{minPrice}}</span>
+						<input id="ex2" type="text" class="span2" value="" data-slider-min="{{minPrice}}" data-slider-max="{{maxPrice}}" data-slider-step="5" data-slider-value="[120,1000]" name="filtre-price"/>
+						<span class="pl-2">€ {{maxPrice}}</span>
+					</div>
+				</div>
+			</div>
+
+		{{ form_end(formSearcht) }}
+
+
+
+
+
+	{# <form>
 
 		<div class="form-group">
 			<input name="search" type="text" class="form-control form-control-lg" placeholder="Search a username here">
@@ -45,5 +69,9 @@
 		</div>
 
 		<button type="submit" class="btn btn-primary">Sign in</button>
-	</form>
+	</form> #}
+
+
+
+
 </div>

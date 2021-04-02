@@ -3,11 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Ad;
+use App\Entity\Search;
+use App\Form\SearchType;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
 
 class HomeController extends Controller
 {
@@ -34,6 +37,13 @@ class HomeController extends Controller
         // );
         // $strSearch = $request->query->get('search');
         // $order = $request->query->get('order');
+
+         $search = new Search();
+         $form = $this->createForm(SearchType::class , $search);
+         $form->handleRequest($request);
+        
+      
+
 
         $minPrice = $this->entityManger
             ->getRepository(Ad::class)
@@ -73,8 +83,9 @@ class HomeController extends Controller
 
         return $this->render('home.html.twig', [
             'listAdsPaginator' => $listAdsPaginator,
-            'minPrice' => $minPrice,
-            'maxPrice' => $maxPrice,
+            'minPrice'  => $minPrice,
+            'maxPrice'  => $maxPrice,
+            'formSearcht'=> $form->createView(),
         ]);
     }
 }
