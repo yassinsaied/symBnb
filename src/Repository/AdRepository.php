@@ -48,6 +48,13 @@ class AdRepository extends ServiceEntityRepository
     }
      */
 
+     public function findAllQuery() {
+
+       return $this->createQueryBuilder('a')
+                   ->getQuery() ;
+
+     }
+
     public function getMinPrice(){
         $query =       $this->createQueryBuilder('a')
                        ->select('MIN(a.price) AS minprice' );

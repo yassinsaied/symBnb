@@ -9,7 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
-class SearchType extends AbstractType
+class SrchType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -35,7 +35,7 @@ class SearchType extends AbstractType
             ->add('checkIn', TextType::class, [
                    'label' => 'Cheke-out',
                    'attr' => [
-                     'id' => 'Cheke-in',
+                    'id' => 'Cheke-in',
                     
                 ],
             ])

@@ -37,20 +37,8 @@
 {% endblock body %}
 
 {% block javascripts %}
-	<script src="{{asset('assets/js/bootstrap-datepicker.min.js')}}"></script>
+    <script src="{{asset('assets/js/bootstrap-datepicker.min.js')}}"></script>
 	<script src="{{asset('assets/js/bootstrap-slider.min.js')}}"></script>
-	
+	<script src="{{asset('assets/js/home-search.js')}}"></script>
 
-
-	<script>
-$(document).ready(function() {
-
-	$('#Check-in, #Check-out').datepicker({format: 'dd/mm/yyyy', locale: 'fr'});
-    $("#ex2").slider({});
-
-  
- 
-});
-
-	</script>
 {% endblock %}

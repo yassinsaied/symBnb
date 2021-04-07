@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Ad;
 use App\Entity\Search;
-use App\Form\SearchType;
+use App\Form\SrchType;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,12 +38,6 @@ class HomeController extends Controller
         // $strSearch = $request->query->get('search');
         // $order = $request->query->get('order');
 
-         $search = new Search();
-         $form = $this->createForm(SearchType::class , $search);
-         $form->handleRequest($request);
-        
-      
-
 
         $minPrice = $this->entityManger
             ->getRepository(Ad::class)
@@ -52,19 +46,35 @@ class HomeController extends Controller
             ->getRepository(Ad::class)
             ->getMaxPrice();
 
-        // $listAds = $this->entityManger
-        //     ->getRepository(Ad::class)
-        //     ->searchAds(
-        //         $strSearch,
-        //         $minPrice,
-        //         $maxPrice,
-        //         $checkIn,
-        //         $checkOut,
-        //         $order
-        //     );
+         $search = new Search();
+         $form = $this->createForm(SrchType::class , $search);
+         $form->handleRequest($request);
+         
+         if($form->isValid() && $form->isSubmitted())
+         {
+                  $listAds = $this->entityManger
+                                 ->getRepository(Ad::class)
+                                 ->searchAds(
+                                        $strSearch,
+                                        $minPrice,
+                                        $maxPrice,
+                                        $checkIn,
+                                        $checkOut,
+                                        $order
+                                  );
+
+         }
+
+           
+      
 
 
-        $listAds = $this->entityManger->getRepository(Ad::class)->findAll();
+      
+
+   
+
+
+        $listAds = $this->entityManger->getRepository(Ad::class)->findAllQuery();
         $listAdsPaginator = $this->paginator->paginate(
             $listAds,
             $request->query->getInt('page', 1)
