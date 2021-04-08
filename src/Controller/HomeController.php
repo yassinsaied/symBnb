@@ -50,7 +50,7 @@ class HomeController extends Controller
          $form = $this->createForm(SrchType::class , $search);
          $form->handleRequest($request);
          
-         if($form->isValid() && $form->isSubmitted())
+         if( $form->isSubmitted() && $form->isValid() )
          {
                   $listAds = $this->entityManger
                                  ->getRepository(Ad::class)

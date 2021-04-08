@@ -15,7 +15,10 @@ class SrchType extends AbstractType
     {
         $builder
             ->add('q', TextType::class, [
-                'attr' => ['placeholder' => 'search any text here'],
+                'attr' => ['placeholder' => 'search any text here',
+                            'class'   => 'form-control'
+            
+                          ],
             ])
             // ->add('price', TextType::class , [
             //     'mapped' => false,
@@ -33,14 +36,14 @@ class SrchType extends AbstractType
             ->add('min', HiddenType::class)
             ->add('max' , HiddenType::class)
             ->add('checkIn', TextType::class, [
-                   'label' => 'Cheke-out',
+                   'label' => 'Cheke-In',
                    'attr' => [
                     'id' => 'Cheke-in',
                     
                 ],
             ])
             ->add('checkOut', TextType::class, [
-                  'label' => 'Cheke-out',
+                  'label' => 'Cheke-Out',
                   'attr' => [
                   'id' => 'Cheke-out',
                 
