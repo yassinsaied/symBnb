@@ -4,51 +4,36 @@ namespace App\Form;
 
 use App\Entity\Search;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class SrchType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->setMethod('GET')
             ->add('q', TextType::class, [
                 'attr' => ['placeholder' => 'search any text here',
-                            'class'   => 'form-control'
-            
-                          ],
-            ])
-            // ->add('price', TextType::class , [
-            //     'mapped' => false,
-            //     'attr' => [
-            //         'data-slider-min' =>100,
-            //         'data-slider-max' =>2000,
-            //         'data-slider-step' => 5,
-            //         'data-slider-value'=> [120,1000]
-                 
-            //    ],
+                    'class' => 'form-control',
 
-
-            // ] )
-
-            ->add('min', HiddenType::class)
-            ->add('max' , HiddenType::class)
-            ->add('checkIn', TextType::class, [
-                   'label' => 'Cheke-In',
-                   'attr' => [
-                    'id' => 'Cheke-in',
-                    
                 ],
             ])
+
+            ->add('min', HiddenType::class)
+
+            ->add('max', HiddenType::class)
+
+            ->add('checkIn', TextType::class, [
+                'label' => 'Cheke-In',
+            ])
+
             ->add('checkOut', TextType::class, [
-                  'label' => 'Cheke-Out',
-                  'attr' => [
-                  'id' => 'Cheke-out',
-                
-             ],
-         ]);
+                'label' => 'Cheke-Out',
+            ]);
+
     }
 
     public function configureOptions(OptionsResolver $resolver)
