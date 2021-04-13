@@ -52,23 +52,27 @@ class HomeController extends Controller
             $minPriceSearch =  $request->query->get('min');
             $maxPriceSearch =  $request->query->get('max') ;
 
+            dump( $minPriceSearch, $maxPriceSearch ) ;
+            die;
+
             $listAds = $this->entityManger
                 ->getRepository(Ad::class)
                 ->searchAds(
                     $strSearch,
-                    $minPrice,
-                    $maxPrice,
+                    $minPriceSearch,
+                    $maxPriceSearch,
                     $checkIn,
-                    $checkOut,
-                    $order
+                    $checkOut
+                
                 );
 
-                $listAdsPaginator = $this->paginator->paginate(
+                $listAdsSearchPaginator = $this->paginator->paginate(
                     $listAds,
                     $request->query->getInt('page', 1)
                 );
-                return $this->render('ui/list_ads.html.twig', [
-                    'listAds' => $listAdsPaginator,
+
+                return $this->render('ad/search_ads.html.twig', [
+                    'listAds' => $listAdsSearchPaginator,
         
                 ]);
 

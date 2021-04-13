@@ -55,6 +55,16 @@ class AdRepository extends ServiceEntityRepository
 
      }
 
+
+
+    public function bestAdsQuery() {
+
+       return $this->createQueryBuilder('a')
+                   ->orderBy('a.price' , 'ASC')
+                   ->getQuery() ;
+
+    } 
+
     public function getMinPrice(){
         $query =       $this->createQueryBuilder('a')
                        ->select('MIN(a.price) AS minprice' );
@@ -79,7 +89,7 @@ class AdRepository extends ServiceEntityRepository
 
 
 
-    public function searchAds($strSearch, $min, $max, $checkIn, $checkOut , $order)
+    public function searchAds($strSearch, $min, $max, $checkIn, $checkOut)
     {
 
              
@@ -127,19 +137,19 @@ class AdRepository extends ServiceEntityRepository
                     ->setParameter('checkOut', $checkOut);
             }
       
-        if (!empty($order)) {
+        // if (!empty($order)) {
 
-            if ($order == 'lowprice') {
-                $query = $query
-                    ->orderBy('a.price', 'ASC');
+        //     if ($order == 'lowprice') {
+        //         $query = $query
+        //             ->orderBy('a.price', 'ASC');
 
-            } else {
+        //     } else {
 
-                $query = $query
-                    ->orderBy('a.' . $order, 'DESC');
+        //         $query = $query
+        //             ->orderBy('a.' . $order, 'DESC');
 
-            }
-        }
+        //     }
+        // }
             //   dump($query->getQuery()->getSql());
             //   die;
 

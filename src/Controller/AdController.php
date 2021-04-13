@@ -39,12 +39,22 @@ class AdController extends AbstractController
     {
         $listAds = $this->getDoctrine()
             ->getRepository(Ad::class)
-            ->findBy([], ['price' => 'ASC']);
+            ->bestAdsQuery();
 
         $bestAdsPaginator = $this->paginator->paginate(
             $listAds,
             $request->query->getInt('page', 1)
         );
+
+
+        if ($request->isXmlHttpRequest()) {
+           
+            return $this->render('ui/list_ads.html.twig', [
+                'listAds' => $bestAdsPaginator
+
+            ]);
+
+            }
 
         return $this->render('ad/ads.html.twig', [
             'bestAdsPaginator' => $bestAdsPaginator,
