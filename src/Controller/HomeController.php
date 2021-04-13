@@ -38,22 +38,22 @@ class HomeController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $query = $request->query->get('srch');
 
-            $checkIn = \DateTime::createFromFormat(
-                'd/m/Y',
-                $request->query->get('Check-in')
-            );
-            $checkOut = \DateTime::createFromFormat(
-                'd/m/Y',
-                $request->query->get('Check-out')
-            );
-            $strSearch = $request->query->get('search');
-            $order = $request->query->get('order');
-            $minPriceSearch =  $request->query->get('min');
-            $maxPriceSearch =  $request->query->get('max') ;
 
-            dump( $minPriceSearch, $maxPriceSearch ) ;
-            die;
+            // $checkIn = \DateTime::createFromFormat(
+            //     'd/m/Y',
+            //     $query['checkIn']
+            // );
+            // $checkOut = \DateTime::createFromFormat(
+            //     'd/m/Y',
+            //     $query['checkOut']
+            // );
+            $strSearch =  $query['q'];
+            $minPriceSearch =   $query['min'];
+            $maxPriceSearch =   $query['max'] ;
+           
+          
 
             $listAds = $this->entityManger
                 ->getRepository(Ad::class)
@@ -61,8 +61,8 @@ class HomeController extends Controller
                     $strSearch,
                     $minPriceSearch,
                     $maxPriceSearch,
-                    $checkIn,
-                    $checkOut
+                    $query['checkIn'],
+                    $query['checkOut']
                 
                 );
 

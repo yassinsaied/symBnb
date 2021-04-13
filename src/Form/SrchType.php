@@ -4,18 +4,31 @@ namespace App\Form;
 
 use App\Entity\Search;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use App\Form\DataTransformer\DateTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+
 
 class SrchType extends AbstractType
 {
+
+
+    public function __construct(DateTransformer $transformer)
+    {
+        $this->transformer = $transformer;
+    }
+
+
+
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->setMethod('GET')
             ->add('q', TextType::class, [
+                'required' => false,
                 'attr' => ['placeholder' => 'search any text here',
                     'class' => 'form-control',
 
@@ -27,13 +40,27 @@ class SrchType extends AbstractType
             ->add('max', HiddenType::class)
 
             ->add('checkIn', TextType::class, [
-                'label' => 'Cheke-In',
+                'label' => 'Chek-In',
+                'required' => false
             ])
 
             ->add('checkOut', TextType::class, [
-                'label' => 'Cheke-Out',
+                'label' => 'Chek-Out',
+                'required' => false
+                
+                
             ]);
 
+           if($builder->get('checkIn')->getData() !=null){
+         
+               $builder->get('checkIn')->addModelTransformer($this->transformer);
+           }
+
+           if( $builder->get('checkOut')->getData() != null){
+               $builder->get('checkOut')->addModelTransformer($this->transformer);       
+        }
+           
+           
     }
 
     public function configureOptions(OptionsResolver $resolver)
