@@ -35,10 +35,15 @@ class HomeController extends Controller
 
         $search = new Search();
         $form = $this->createForm(SrchType::class, $search);
+       
         $form->handleRequest($request);
 
+   
+
         if ($form->isSubmitted() && $form->isValid()) {
+                 
             $query = $request->query->get('srch');
+               
 
 
             // $checkIn = \DateTime::createFromFormat(
@@ -49,6 +54,10 @@ class HomeController extends Controller
             //     'd/m/Y',
             //     $query['checkOut']
             // );
+
+
+       
+
             $strSearch =  $query['q'];
             $minPriceSearch =   $query['min'];
             $maxPriceSearch =   $query['max'] ;

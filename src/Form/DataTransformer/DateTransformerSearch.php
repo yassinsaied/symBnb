@@ -1,29 +1,21 @@
 <?php
 namespace App\Form\DataTransformer;
 
+use App\Form\DataTransformer\DateTransformer;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
-class DateTransformer implements DataTransformerInterface
+class DateTransformerSearch extends DateTransformer
 {
 
-    public function transform($date)
-    {
-        if ($date === null) {
-         
-            return '';
-        }
-
-        return $date->format('d\m\Y');
-
-    }
+    
 
     public function reverseTransform($stringDate)
     {
         if ($stringDate === null) {
         
-            throw new TransformationFailedException();
-            
+           
+             return   null;
         }
 
         $date = \DateTime::createFromFormat('d/m/Y' ,$stringDate);

@@ -4,18 +4,19 @@ namespace App\Form;
 
 use App\Entity\Search;
 use Symfony\Component\Form\AbstractType;
-use App\Form\DataTransformer\DateTransformer;
+use App\Form\DataTransformer\DateTransformerSearch;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 
+
 class SrchType extends AbstractType
 {
 
 
-    public function __construct(DateTransformer $transformer)
+    public function __construct(DateTransformerSearch $transformer)
     {
         $this->transformer = $transformer;
     }
@@ -51,14 +52,17 @@ class SrchType extends AbstractType
                 
             ]);
 
-           if($builder->get('checkIn')->getData() !=null){
-         
-               $builder->get('checkIn')->addModelTransformer($this->transformer);
-           }
+    
+            
 
-           if( $builder->get('checkOut')->getData() != null){
-               $builder->get('checkOut')->addModelTransformer($this->transformer);       
-        }
+
+
+                  $builder->get('checkIn')->addModelTransformer($this->transformer);
+                     
+                  $builder->get('checkOut')->addModelTransformer($this->transformer);
+          
+                     
+     
            
            
     }
