@@ -25,4 +25,9 @@ sort_ad:
   controller: App\Controller\AdController::sortListAd
 
 
+serchresultads:
+  path: /serchresultads/{id}
+  controller : App\Controller\SearchController::resultSerch  
+
+
 

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}You'r results search
+{% endblock %}
+
+{% block stylesheets %}
+
+	<link rel="stylesheet" href="{{asset('assets/css/bootstrap-slider.min.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/css/bootstrap-datepicker.css')}}">
+
+{% endblock %}
+
+{% block body %}
+	<div class="container ">
+		<div class="text-center mb-3">
+			<h2 class="display-20 display-md-18 display-lg-16">{{listAds.getTotalItemCount }}
+				ads found</h2>
+		</div>
+		<div class="row">
+
+			<div class="col-12 col-sm-12 col-md-4 col-lg-3">
+
+				{% include "ui/left_col_form_search_vertical.html.twig" with {formSearch : formSearch , minPrice : minPrice , maxPrice: maxPrice }%}
+
+			</div>
+
+			<div class="col-12 col-sm-12 col-md-8 col-lg-9">
+				{% include "ui/horizental_nav_filtr.html.twig" with {listAds:listAds}%}
+				{% include "ui/list_ads.html.twig" with {listAds:listAds} %}
+			</div>
+		</div>
+
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+	<script src="{{asset('assets/js/bootstrap-datepicker.min.js')}}"></script>
+	<script src="{{asset('assets/js/bootstrap-slider.min.js')}}"></script>
+	<script src="{{asset('assets/js/home-search.js')}}"></script>
+
+{% endblock %}

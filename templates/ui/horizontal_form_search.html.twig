@@ -1,12 +1,12 @@
 <div class="form-serch col-12 col-sm-12 col-md-6 col-lg-6">
 
-	{{ form_start(formSearcht , {'attr': {'id': 'formSearcht'}}) }}
+	{{ form_start(formSearch , {'attr': {'id': 'formSearch'}}) }}
 
 
 	<div class="form-row">
 		<div class="form-group col-12  col-sm-12 col-md-12 col-lg-12">
 
-			{{ form_widget(formSearcht.q) }}
+			{{ form_widget(formSearch.q) }}
 
 		</div>
 
@@ -16,84 +16,36 @@
 
 	<div class="form-row">
 		<div class="form-group col-6 col-sm-12 col-md-4 col-lg-4">
-			{{ form_label(formSearcht.checkIn) }}
-			{{ form_widget(formSearcht.checkIn) }}
+			{{ form_label(formSearch.checkIn) }}
+			{{ form_widget(formSearch.checkIn) }}
 
 		</div>
 
 		<div class="form-group col-6 col-sm-12 col-md-4 col-lg-4">
 
-			{{ form_label(formSearcht.checkOut) }}
-			{{ form_widget(formSearcht.checkOut) }}
+			{{ form_label(formSearch.checkOut) }}
+			{{ form_widget(formSearch.checkOut) }}
 
 		</div>
 		<div class="form-group col-md-4">
 			<label>
 				Price
-				</label>
+			</label>
 			<div class="d-flex pt-2">
 				<small for="price-filterm " class="mr-2">{{minPrice}}€</small>
-				<input id="price-filter" type="text" class="" value="" data-slider-min="{{minPrice}}" data-slider-max="{{maxPrice}}" data-slider-step="10" data-slider-value="[120,1000]" name="filtre-price"/>
+				<input id="price-filter" type="text" class="" value="" data-slider-min="{{minPrice}}" data-slider-max="{{maxPrice}}" data-slider-step="10" data-slider-value="[{{minPrice}},{{maxPrice}}]" name="filtre-price"/>
 				<small for="price-filter" class="ml-2">{{maxPrice}}€</small>
-				</div></div>
-<div class="mx-auto">
-				<button class="btn btn-primary" type="button" id="fast-Search">Search</button>
-
-				</div>
-
 			</div>
-
-
-			{{ form_end(formSearcht) }}
-
-
-			{# <form>
-						
-								<div class="form-group">
-									<input name="search" type="text" class="form-control form-control-lg" placeholder="Search a username here">
-								</div>
-						
-								<div class="form-row">
-									<div class="form-group col-md-4">
-										<label  for="input-order">Sort By</label>
-										<select id="input-order" name="order" class="form-control">
-											<option  value="createAt">Search By</option>
-											<option  value="price">Hight Price</option>
-											<option  value="lowprice">low Price</option>
-											<option  value="avgRate">Top  Rating</option>
-											<option  value="createAt">Latest Ad</option>
-										</select>
-									</div>
-									<div class="form-group col-md-2">
-										<label for="Check-in">Check-in</label>
-										<input type="text" class="form-control" id="Check-in" name="Check-in">
-									</div>
-						
-									<div class="form-group col-md-2">
-										<label for="Check-out">Chek-out</label>
-										<input type="text" class="form-control" id="Check-out" name="Check-out">
-									</div>
-						
-									<div class="form-group col-md-4 pt-4">
-						
-										<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-											Search By Price
-										</button>
-										<div class="collapse pt-2 " id="collapseExample">
-											<div class="d-flex">
-												<span class="pr-2">€ {{minPrice}}</span>
-												<input id="ex2" type="text" class="span2" value="" data-slider-min="{{minPrice}}" data-slider-max="{{maxPrice}}" data-slider-step="5" data-slider-value="[120,1000]" name="filtre-price"/>
-												<span class="pl-2">€ {{maxPrice}}</span>
-											</div>
-										</div>
-									</div>
-						
-						
-								</div>
-						
-								<button type="submit" class="btn btn-primary">Sign in</button>
-							</form> #}
-
+		</div>
+		<div class="mx-auto">
+			<button class="btn btn-primary" type="button" id="fast-Search">Search</button>
 
 		</div>
-		{% block javascripts %}{% endblock %}
+
+	</div>
+
+
+	{{ form_end(formSearch) }}
+
+
+</div>

@@ -38,56 +38,13 @@ class HomeController extends Controller
        
         $form->handleRequest($request);
 
-   
-
         if ($form->isSubmitted() && $form->isValid()) {
-                 
-            $query = $request->query->get('srch');
-               
 
-
-            // $checkIn = \DateTime::createFromFormat(
-            //     'd/m/Y',
-            //     $query['checkIn']
-            // );
-            // $checkOut = \DateTime::createFromFormat(
-            //     'd/m/Y',
-            //     $query['checkOut']
-            // );
-
-
-       
-
-            $strSearch =  $query['q'];
-            $minPriceSearch =   $query['min'];
-            $maxPriceSearch =   $query['max'] ;
-           
-          
-
-            $listAds = $this->entityManger
-                ->getRepository(Ad::class)
-                ->searchAds(
-                    $strSearch,
-                    $minPriceSearch,
-                    $maxPriceSearch,
-                    $query['checkIn'],
-                    $query['checkOut']
-                
-                );
-
-                $listAdsSearchPaginator = $this->paginator->paginate(
-                    $listAds,
-                    $request->query->getInt('page', 1)
-                );
-
-                return $this->render('ad/search_ads.html.twig', [
-                    'listAds' => $listAdsSearchPaginator,
-        
-                ]);
-
+            $this->entityManger->persist($search);
+            $this->entityManger->flush();
+            return $this->redirect('serchresultads/'.$search->getId().'/?'.$request->getQueryString());
         }
     
-
         $listAds = $this->entityManger->getRepository(Ad::class)->findAllQuery();
         $listAdsPaginator = $this->paginator->paginate(
             $listAds,
@@ -107,7 +64,7 @@ class HomeController extends Controller
             'listAdsPaginator' => $listAdsPaginator,
             'minPrice' => $minPrice,
             'maxPrice' => $maxPrice,
-            'formSearcht' => $form->createView(),
+            'formSearch' => $form->createView(),
         ]);
     }
 }

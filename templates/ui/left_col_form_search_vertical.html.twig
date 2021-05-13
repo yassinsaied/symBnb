@@ -1,0 +1,46 @@
+<div class="card">
+	<div class="card-header">
+		Search
+	</div>
+	<div class="card-body">
+	{{ form_start(formSearch , {'attr': {'id': 'formResultSearch'}}) }}
+			<div class="form-group">
+				{{ form_widget(formSearch.q) }}
+
+			</div>
+			<div class="form-group">
+				{{ form_label(formSearch.checkIn) }}
+				{{ form_widget(formSearch.checkIn) }}
+			</div>
+
+			<div class="form-group">
+				{{ form_label(formSearch.checkOut) }}
+				{{ form_widget(formSearch.checkOut) }}
+			</div>
+
+
+			<div class="form-group">
+
+				<label>
+					Price
+				</label>
+				<div class="d-flex pt-2">
+					<small for="price-filterm " class="mr-2">{{minPrice}}€</small>
+					<input id="price-filter" type="text" class=""  data-slider-min="{{minPrice}}" data-slider-max="{{maxPrice}}" data-slider-step="10"  name="filtre-price"/>
+					<small for="price-filter" class="ml-2">{{maxPrice}}€</small>
+				</div>
+
+			</div>
+
+			<button id="fast-Search" type="submit" class="btn btn-primary">Submit</button>
+	  {{ form_end(formSearch)}} 
+
+	</div>
+
+
+
+			    
+			  
+
+
+</div>
