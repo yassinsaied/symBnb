@@ -1,0 +1,21 @@
+resources:
+    App\Entity\Ad: ~
+    App\Entity\Bouking: ~
+    App\Entity\Image: ~
+    App\Entity\Rating: ~
+    App\Entity\Search: ~
+    App\Entity\User: ~
+    App\Entity\Role: ~
+
+
+
+
+
+
+
+    # App\Entity\Offer:
+    #     shortName: 'Offer'                   
+    #     description: 'An offer from my shop' 
+    #     iri: 'http://schema.org/Offer'       
+    #     attributes:                          
+    #         pagination_items_per_page: 25    
