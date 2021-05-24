@@ -17,7 +17,13 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "bootstrap": "^5.0.1",
-        "jquery": "^3.6.0"
+        "bootstrap": "^4.6.0",
+        "bootstrap-datepicker": "^1.9.0",
+        "bootstrap-slider": "^11.0.2",
+        "bootswatch": "^5.0.1",
+        "jquery": "^3.6.0",
+        "jquery-validation": "^1.19.3",
+        "jquery.validate.file": "^1.0.0",
+        "purl": "^1.0.4"
     }
 }

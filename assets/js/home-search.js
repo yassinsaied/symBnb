@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(function() {
 
     $('#srch_checkOut, #srch_checkIn').datepicker({ format: 'dd/mm/yyyy', locale: 'fr' });
     $("#formSearch #price-filter").slider({});

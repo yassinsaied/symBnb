@@ -3,8 +3,6 @@
 {% endblock %}
 {% block stylesheets %}
 
-	<link rel="stylesheet" href="{{asset('assets/css/bootstrap-slider.min.css')}}">
-	<link rel="stylesheet" href="{{asset('assets/css/bootstrap-datepicker.css')}}">
 
 {% endblock %}
 
@@ -19,7 +17,11 @@
 	{% endfor %}
 	<div class"slidshow-home">
 		{% include "ui/slidshow.html.twig"  %}
-		{% include "ui/horizontal_form_search.html.twig" with { formSearch : formSearch} %}
+		<div class="row">
+			{% include "ui/horizontal_form_search.html.twig" with { formSearch : formSearch} %}
+		
+		</div>
+	
 		{# {% include "ui/horizontal_form_search.html.twig" with { minPrice : minPrice,  maxPrice : maxPrice,} %} #}
 												
 	</div>
@@ -37,8 +39,6 @@
 {% endblock body %}
 
 {% block javascripts %}
-    <script src="{{asset('assets/js/bootstrap-datepicker.min.js')}}"></script>
-	<script src="{{asset('assets/js/bootstrap-slider.min.js')}}"></script>
-	<script src="{{asset('assets/js/home-search.js')}}"></script>
+   
 
 {% endblock %}

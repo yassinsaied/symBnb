@@ -1,4 +1,4 @@
-$(document).ready(function() {
+
 
     //css of error form  
     jQuery.validator.setDefaults({
@@ -20,12 +20,12 @@ $(document).ready(function() {
     updateListeView()
 
 
-    $('.page-link').focus(function() {
-        let url = $(this).attr('href');
-        let queryParams = $.url(url).param();
-        queryParams.view = styleView;
+    $('.page-link').on('focus',function() {
 
-        let newUrl = "?" + $.param(queryParams);
+        let href = $(this).attr('href');
+        let params = new URLSearchParams(href.search); 
+        params.set('view', styleView);
+        let newUrl = "?" + params.toString();
         $(this).attr('href', newUrl);
 
 
@@ -42,11 +42,11 @@ $(document).ready(function() {
 
     function updateListeView() {
 
-        let currentUrl = window.location.href;
-        let view = $.url(currentUrl).param('view');
-
+        let params = (new URL(document.location)).searchParams;
+        let view  = params.get('view');
+        console.log(view)
         if (view === 'list') {
-
+           
             mofifateView('list');
 
         } else {
@@ -105,4 +105,3 @@ $(document).ready(function() {
 
 
 
-});

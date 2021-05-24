@@ -7,7 +7,7 @@
 				Welcome!
 			{% endblock %}
 		</title>
-		<link rel="stylesheet" href="{{asset('build/app.css')}}">
+		 {{ encore_entry_link_tags('app') }}
      
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
 		
@@ -26,12 +26,7 @@
 				{% include "ui/footer.html.twig" %}
 			{% endblock %}
 
-     
-	            <script src="{{asset('build/app.js')}}"></script>
-			
-		        <script src="{{asset('assets/js/jquery.validate.min.js')}}"></script>
-			    <script src="{{asset('assets/js/purl.js')}}"></script>
-		        <script src="{{asset('assets/js/main.js')}}"></script>
+                {{ encore_entry_script_tags('app') }}
 		
 			
 		
