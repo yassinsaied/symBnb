@@ -1,12 +1,15 @@
 api_platform:
+    defaults:
+        pagination_client_enabled: true
+        pagination_client_items_per_page: true
     mapping:
         paths: ['%kernel.project_dir%/src/Entity' , '%kernel.project_dir%/config/api_platform']
     patch_formats:
         json: ['application/merge-patch+json']
     swagger:
         versions: [3]
-    collection:
-      pagination:
-        enabled: true
-        items_per_page: 30
+    # collection:
+    #   pagination:
+    #     enabled: true
+    #     items_per_page: 30
           
