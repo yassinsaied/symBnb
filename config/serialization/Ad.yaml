@@ -1,0 +1,32 @@
+App\Entity\Ad:
+    attributes:
+        title:
+            groups: ['read_ad', 'write_ad']
+        slug:
+            groups: ['read_ad', 'write_ad'] 
+        price:
+            groups: ['read_ad', 'write_ad']
+        introduction:
+            groups: ['read_ad', 'write_ad']
+        description:
+            groups: ['read_ad', 'write_ad']
+        rooms:
+            groups: ['read_ad', 'write_ad']
+        createAt:
+            groups: ['read_ad', 'write_ad'] 
+        updateAt:
+            groups: ['read_ad', 'write_ad']
+        boukings:
+            groups: ['read_ad', 'write_ad'] 
+        images:
+            groups: ['read_ad', 'write_ad']
+        author:
+            groups: ['read_ad', 'write_ad']
+        ratings:
+            groups: ['read_ad', 'write_ad']  
+        avgRate:
+            groups: ['read_ad', 'write_ad'] 
+
+            
+            
+

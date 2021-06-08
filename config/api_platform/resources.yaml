@@ -1,6 +1,24 @@
 resources:
-    App\Entity\Ad: ~
-    App\Entity\Bouking: ~
+    App\Entity\Ad:
+        attributes:
+            normalization_context:
+                groups: ['read_ad']
+            denormalization_context:
+                groups: ['write_ad']
+        collectionOperations: ~
+        itemOperations: ~    
+                
+         
+    App\Entity\Bouking:
+        attributes:
+            normalization_context:
+                groups: ['read_bk']
+            denormalization_context:
+                groups: ['write_bk']
+        collectionOperations: ~
+        itemOperations: ~ 
+        
+         
     App\Entity\Image: ~
     App\Entity\Rating: ~
     App\Entity\Search: ~

@@ -1,0 +1,17 @@
+App\Entity\Bouking:
+    attributes:
+        bouker:
+            groups: ['read_bk', 'write_bk']
+      
+        creatAt:
+            groups: ['read_bk', 'write_bk']
+        startDate:
+            groups: ['read_bk', 'write_bk' , 'read_ad', 'write_ad']
+        endDate:
+            groups: ['read_bk', 'write_bk' , 'read_ad', 'write_ad']
+        amount:
+            groups: ['read_bk', 'write_bk']
+        comment:
+            groups: ['read_bk', 'write_bk'] 
+      
+       
