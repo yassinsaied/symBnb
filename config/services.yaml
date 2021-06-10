@@ -28,6 +28,22 @@ services:
         resource: '../src/Controller/'
         tags: ['controller.service_arguments']
 
+
+    searchad.date_filter:
+        parent: 'api_platform.doctrine.orm.date_filter'
+        arguments: [ { boukings.startDate: ~  , boukings.endDate: ~  } ]
+        tags:  [ 'api_platform.filter' ]  
+        autowire: false
+        autoconfigure: false
+        public: false 
+    
+
+    
+
+            
+        
+        
+
   
             
 

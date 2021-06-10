@@ -5,7 +5,10 @@ resources:
                 groups: ['read_ad']
             denormalization_context:
                 groups: ['write_ad']
-        collectionOperations: ~
+        collectionOperations:
+            get:
+                filters: ['searchAd.date_filter']
+            post: ~    
         itemOperations: ~    
                 
          
