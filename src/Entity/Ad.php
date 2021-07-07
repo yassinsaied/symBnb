@@ -119,6 +119,21 @@ class Ad
      */
     private $avgRate;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $gov;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $type;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $parking;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -418,6 +433,42 @@ class Ad
     public function setAvgRate(?float $avgRate): self
     {
         $this->avgRate = $avgRate;
+
+        return $this;
+    }
+
+    public function getGov(): ?string
+    {
+        return $this->gov;
+    }
+
+    public function setGov(string $gov): self
+    {
+        $this->gov = $gov;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getParking(): ?bool
+    {
+        return $this->parking;
+    }
+
+    public function setParking(bool $parking): self
+    {
+        $this->parking = $parking;
 
         return $this;
     }

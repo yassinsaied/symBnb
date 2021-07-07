@@ -26,6 +26,13 @@ App\Entity\Ad:
             groups: ['read_ad', 'write_ad']  
         avgRate:
             groups: ['read_ad', 'write_ad'] 
+        type:
+            groups: ['read_ad', 'write_ad'] 
+        parking:
+            groups: ['read_ad', 'write_ad']  
+        gov:
+            groups: ['read_ad', 'write_ad']             
+
 
             
             
