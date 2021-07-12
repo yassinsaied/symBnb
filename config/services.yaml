@@ -28,14 +28,23 @@ services:
         resource: '../src/Controller/'
         tags: ['controller.service_arguments']
 
-
-    searchad.date_filter:
-        parent: 'api_platform.doctrine.orm.date_filter'
-        arguments: [ { boukings.startDate: ~  , boukings.endDate: ~  } ]
-        tags:  [ 'api_platform.filter' ]  
+    customsearch.ad_filter:
+        parent: 'App\Api\CustomSearchFilter'
+        arguments: [ '@doctrine','@request_stack', '@?logger', { introduction: 'partial' , description: 'partial' , title: 'partial' }]
+        tags: [ 'api_platform.filter' ]
         autowire: false
         autoconfigure: false
         public: false 
+
+
+    customsearch.date_filter:
+        parent: 'App\Api\DateFilter'
+        arguments: [ '@doctrine','@request_stack', '@?logger', { boukings.startDate: ~ , boukings.endDate: ~ }]
+        tags: [ 'api_platform.filter' ]
+        autowire: false
+        autoconfigure: false
+        public: false 
+       
 
 
 
@@ -45,18 +54,23 @@ services:
         tags:  [ 'api_platform.filter' ]  
         autowire: false
         autoconfigure: false
-        public: false   
+        public: false  
 
 
-    searchad.text_filter:
-        parent: 'api_platform.doctrine.orm.search_filter'
-        arguments: [ { introduction: 'partial' , description: 'partial' , title: 'partial' } ]
+
+
+    book.date_filter:
+        parent: 'api_platform.doctrine.orm.date_filter'
+        arguments: [ { boukings.startDate: ~ , boukings.endDate: ~ } ]
         tags:  [ 'api_platform.filter' ]
         # The following are mandatory only if a _defaults section is defined with inverted values.
         # You may want to isolate filters in a dedicated file to avoid adding the following lines (by adding them in the defaults section)
         autowire: false
         autoconfigure: false
-        public: false      
+        public: false     
+
+
+     
 
  
     

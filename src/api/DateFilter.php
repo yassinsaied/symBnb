@@ -1,31 +1,34 @@
-<?php 
+<?php
 
-namespace App\Filter;
+namespace App\Api;
 
-use Doctrine\ORM\QueryBuilder;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\AbstractFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Util\QueryNameGeneratorInterface;
+use Doctrine\ORM\QueryBuilder;
 
-
-final class DateFilter extends AbstractFilter
+class DateFilter extends AbstractFilter
 {
     protected function filterProperty(string $property, $value, QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, string $operationName = null)
     {
-        // otherwise filter is applied to order and page as well
-        if (
-            !$this->isPropertyEnabled($property, $resourceClass) ||
-            !$this->isPropertyMapped($property, $resourceClass)
-        ) {
-            return;
-        }
+            if ($property !== 'dateFilter_boukings.startDate' || $property !== 'dateFilter_boukings.endDate') {
+                return;
+            }
 
-        $parameterName = $queryNameGenerator->generateParameterName($property); // Generate a unique parameter name to avoid collisions with other filters
-        $queryBuilder
-            ->andWhere(sprintf('REGEXP(o.%s, :%s) = 1', $property, $parameterName))
-            ->setParameter($parameterName, $value);
-          
-              
-           
+            var_dump($property);
+            die;
+
+        //  $rootAlias = $queryBuilder->getRootAliases()[0];
+        //  $queryBuilder
+        //        ->leftJoin(sprintf('%s.boukings', $rootAlias), 'b')
+        //        ->andWhere($queryBuilder->expr()->not(
+        //         $queryBuilder->expr()->orX(
+        //         $queryBuilder->expr()->between('b.startDate', ':checkIn', ':checkOut'),
+        //         $queryBuilder->expr()->between('b.endDate', ':checkIn', ':checkOut')
+        //          ))
+        //   )
+        //     ->setParameter('checkIn', $checkIn)
+        //     ->setParameter('checkOut', $checkOut);
+
     }
 
     // This function is only used to hook in documentation generators (supported by Swagger and Hydra)
@@ -37,7 +40,9 @@ final class DateFilter extends AbstractFilter
 
         $description = [];
         foreach ($this->properties as $property => $strategy) {
-            $description["regexp_$property"] = [
+          
+
+            $description["dateFilter_$property"] = [
                 'property' => $property,
                 'type' => 'string',
                 'required' => false,
@@ -49,6 +54,8 @@ final class DateFilter extends AbstractFilter
             ];
         }
 
+
+      
         return $description;
     }
 }
