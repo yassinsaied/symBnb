@@ -39,7 +39,7 @@ services:
 
     customsearch.date_filter:
         parent: 'App\Api\DateFilter'
-        arguments: [ '@doctrine','@request_stack', '@?logger', { boukings.startDate: ~ , boukings.endDate: ~ }]
+        arguments: [ '@doctrine','@request_stack' , '@?logger', { boukings.startDate: ~ , boukings.endDate: ~ }]
         tags: [ 'api_platform.filter' ]
         autowire: false
         autoconfigure: false
