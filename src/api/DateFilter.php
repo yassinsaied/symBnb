@@ -2,68 +2,70 @@
 
 namespace App\Api;
 
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Extension\QueryCollectionExtensionInterface;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\AbstractFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Util\QueryNameGeneratorInterface;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
-use Symfony\Component\VarDumper\VarDumper;
 
-class DateFilter extends AbstractFilter
+class DateFilter extends AbstractFilter implements QueryCollectionExtensionInterface
 {
     protected function filterProperty(string $property, $value, QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, string $operationName = null)
     {
-        if ($property === 'boukings.startDate') {
-            $chekIn = $value ;
-        }
-
-        if ($property ==='boukings.endDate') {
-             $chekOut = $value ;
-        }
-               
-               
-
-       
-
-
-
-          var_dump($property
-        );
-        
-          $rootAlias = $queryBuilder->getRootAliases()[0];
-          $queryBuilder
-              ->leftJoin(sprintf('%s.boukings', $rootAlias), 'b') ;
-        //        ->andWhere($queryBuilder->expr()->not(
-        //         $queryBuilder->expr()->orX(
-        //         $queryBuilder->expr()->between('b.startDate', ':checkIn', ':checkOut'),
-        //         $queryBuilder->expr()->between('b.endDate', ':checkIn', ':checkOut')
-        //          ))
-        //   )
-        //     ->setParameter('checkIn', $checkIn)
-        //     ->setParameter('checkOut', $checkOut);
-           //  var_dump( $queryBuilder);
+      
 
     }
 
-
-
     public function apply(QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, string $operationName = null/*, array $context = []*/)
     {
-       
 
         if (null === $this->requestStack || null === $request = $this->requestStack->getCurrentRequest()) {
             return;
         }
+        $checkIn = null ;
+        $checkOut= null ;
 
         foreach ($this->extractProperties($request, $resourceClass) as $property => $value) {
-            if ($property === 'boukings.startDate' || $property ==='boukings.endDate') {
               
-               $this->filterProperty($property, $value, $queryBuilder, $queryNameGenerator, $resourceClass, $operationName);
-          }
+            if ($property === 'boukings.startDate') {
+                    $checkIn = $value ;
+                    
+            }
+        
+            if ($property === 'boukings.endDate') {
+                    $checkOut = $value ;
+           }
+           
 
         }
+
+       
+        $rootAlias = $queryBuilder->getRootAliases()[0];
+        $aliasBoukings = $queryNameGenerator->generateJoinAlias("Bouking"); 
+
+       $queryBuilder
+               ->leftJoin(sprintf('%s.boukings', $rootAlias), $aliasBoukings);
+       $andX = $queryBuilder->expr()->orX("$aliasBoukings.startDate > :checkOut AND $aliasBoukings.endDate < :checkIn",
+                                         "$aliasBoukings.startDate > :checkOut AND $aliasBoukings.endDate > :checkOut",
+                                         "$aliasBoukings.startDate < :checkIn AND $aliasBoukings.endDate < :checkIn"
+                                            
+                                            );
+                
+       $queryBuilder->andWhere($andX)
+               ->orWhere($queryBuilder->expr()->isNull("$aliasBoukings"))
+               ->setParameter('checkIn',  new \DateTime($checkIn))
+               ->setParameter('checkOut' , new \DateTime($checkOut))      ; 
+              
+               
+           
+        // var_dump($queryBuilder->getDQL());exit;
+      }
+
+    public function applyToCollection(QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, string $operationName = null)
+    {
+       
+
     }
-
-
-
 
     // This function is only used to hook in documentation generators (supported by Swagger and Hydra)
     public function getDescription(string $resourceClass): array
@@ -74,7 +76,6 @@ class DateFilter extends AbstractFilter
 
         $description = [];
         foreach ($this->properties as $property => $strategy) {
-          
 
             $description[$property] = [
                 'property' => $property,
@@ -88,8 +89,6 @@ class DateFilter extends AbstractFilter
             ];
         }
 
-
-      
         return $description;
     }
 }

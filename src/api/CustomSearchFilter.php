@@ -19,9 +19,9 @@ class CustomSearchFilter extends AbstractFilter
        
         $alias = $queryBuilder->getRootAliases()[0];
                 $queryBuilder->andWhere(sprintf('%s.title LIKE :search OR %s.description LIKE :search OR %s.introduction LIKE :search',  $alias,  $alias, $alias))
-                     ->setParameter('search', '%'.$value.'%');
+                             ->setParameter('search', '%'.$value.'%');
                      
-      
+    
 
     }
 
