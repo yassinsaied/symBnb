@@ -70,4 +70,4 @@ security:
     access_control:
          - { path: ^/api/ads, roles: ROLE_USER ,  methods :[POST,PUT,DELETE] }
          - { path: ^/api/bouking, roles: ROLE_USER  , methods : [POST,PUT,DELETE]}
-         - { path: ^/api/users, roles: ROLE_USER  , methods : [GET,PUT,DELETE]}
+         - { path: ^/api/users, roles: ROLE_USER  , methods : [PUT,DELETE]}

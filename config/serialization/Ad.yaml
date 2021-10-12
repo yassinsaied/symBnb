@@ -28,10 +28,35 @@ App\Entity\Ad:
             groups: ['read_ad', 'write_ad'] 
         type:
             groups: ['read_ad', 'write_ad'] 
+        gov:
+            groups: ['read_ad', 'write_ad']    
         parking:
             groups: ['read_ad', 'write_ad']  
-        gov:
-            groups: ['read_ad', 'write_ad']             
+        pool:
+            groups: ['read_ad', 'write_ad']
+        centralHeating:
+            groups: ['read_ad', 'write_ad']
+        centralCooling:
+            groups: ['read_ad', 'write_ad']  
+        elevator:
+            groups: ['read_ad', 'write_ad']
+        spa:
+            groups: ['read_ad', 'write_ad']
+        stunningVieaw:
+            groups: ['read_ad', 'write_ad']
+        dishWasher:
+            groups: ['read_ad', 'write_ad']  
+        surveillanceCamera:
+            groups: ['read_ad', 'write_ad']
+        petFrindly:
+            groups: ['read_ad', 'write_ad']
+        sweetRoom:
+            groups: ['read_ad', 'write_ad']
+        fullAdress:
+            groups: ['read_ad', 'write_ad'] 
+        image:
+            groups: ['read_ad', 'write_ad']      
+        
 
 
             

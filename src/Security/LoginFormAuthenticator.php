@@ -82,7 +82,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
 
 
         if($user->getActivationToken() != null )
-        {   dump($user->getActivationToken());
+        {  
            
             throw new CustomUserMessageAuthenticationException('Please active your account from your email.');
         }

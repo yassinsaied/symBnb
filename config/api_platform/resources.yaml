@@ -7,7 +7,7 @@ resources:
                 groups: ['write_ad']
         collectionOperations:
             get:
-                filters: ['customsearch.ad_filter' ,'customsearch.date_filter' ]
+                filters: ['customsearch.ad_filter' ,'customsearch.date_filter' ,'searchad.price_filter' , 'searchad.gov_filter' ]
             post: ~    
         itemOperations: ~    
                 
@@ -20,12 +20,25 @@ resources:
                 groups: ['write_bk']
         collectionOperations: ~
         itemOperations: ~ 
+
+
+    App\Entity\User:
+        attributes:
+            normalization_context:
+                groups: ['read_user']
+            denormalization_context:
+                groups: ['write_user']
+        collectionOperations:
+            get:
+                filters: ['searchuser.mail_filter']
+            post: ~    
+        itemOperations: ~  
+
         
          
     App\Entity\Image: ~
     App\Entity\Rating: ~
     App\Entity\Search: ~
-    App\Entity\User: ~
     App\Entity\Role: ~
 
 

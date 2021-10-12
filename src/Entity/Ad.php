@@ -76,10 +76,7 @@ class Ad
     private $description;
 
     /**
-     * @ORM\Column(type="integer")
-     * @Assert\Regex(
-     *      pattern="/^[1-9]\d*$/"
-     * )
+     * @ORM\Column(type="string", length=255)
      */
     private $rooms;
 
@@ -133,6 +130,61 @@ class Ad
      * @ORM\Column(type="boolean")
      */
     private $parking;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $pool;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $centralHeating;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $centralCooling;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $elevator;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $spa;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $stunningVieaw;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $dishWasher;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $surveillanceCamera;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $petFrindly;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $sweetRoom;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $fullAdress;
 
     public function __construct()
     {
@@ -206,7 +258,7 @@ class Ad
         return $this;
     }
 
-    public function getRooms(): ?int
+    public function getRooms(): ?string
     {
         return $this->rooms;
     }
@@ -469,6 +521,138 @@ class Ad
     public function setParking(bool $parking): self
     {
         $this->parking = $parking;
+
+        return $this;
+    }
+
+    public function getPool(): ?bool
+    {
+        return $this->pool;
+    }
+
+    public function setPool(?bool $pool): self
+    {
+        $this->pool = $pool;
+
+        return $this;
+    }
+
+    public function getCentralHeating(): ?bool
+    {
+        return $this->centralHeating;
+    }
+
+    public function setCentralHeating(?bool $centralHeating): self
+    {
+        $this->centralHeating = $centralHeating;
+
+        return $this;
+    }
+
+    public function getCentralCooling(): ?bool
+    {
+        return $this->centralCooling;
+    }
+
+    public function setCentralCooling(?bool $centralCooling): self
+    {
+        $this->centralCooling = $centralCooling;
+
+        return $this;
+    }
+
+    public function getElevator(): ?bool
+    {
+        return $this->elevator;
+    }
+
+    public function setElevator(?bool $elevator): self
+    {
+        $this->elevator = $elevator;
+
+        return $this;
+    }
+
+    public function getSpa(): ?bool
+    {
+        return $this->spa;
+    }
+
+    public function setSpa(?bool $spa): self
+    {
+        $this->spa = $spa;
+
+        return $this;
+    }
+
+    public function getStunningVieaw(): ?bool
+    {
+        return $this->stunningVieaw;
+    }
+
+    public function setStunningVieaw(?bool $stunningVieaw): self
+    {
+        $this->stunningVieaw = $stunningVieaw;
+
+        return $this;
+    }
+
+    public function getDishWasher(): ?bool
+    {
+        return $this->dishWasher;
+    }
+
+    public function setDishWasher(?bool $dishWasher): self
+    {
+        $this->dishWasher = $dishWasher;
+
+        return $this;
+    }
+
+    public function getSurveillanceCamera(): ?bool
+    {
+        return $this->surveillanceCamera;
+    }
+
+    public function setSurveillanceCamera(?bool $surveillanceCamera): self
+    {
+        $this->surveillanceCamera = $surveillanceCamera;
+
+        return $this;
+    }
+
+    public function getPetFrindly(): ?bool
+    {
+        return $this->petFrindly;
+    }
+
+    public function setPetFrindly(?bool $petFrindly): self
+    {
+        $this->petFrindly = $petFrindly;
+
+        return $this;
+    }
+
+    public function getSweetRoom(): ?bool
+    {
+        return $this->sweetRoom;
+    }
+
+    public function setSweetRoom(?bool $sweetRoom): self
+    {
+        $this->sweetRoom = $sweetRoom;
+
+        return $this;
+    }
+
+    public function getFullAdress(): ?string
+    {
+        return $this->fullAdress;
+    }
+
+    public function setFullAdress(string $fullAdress): self
+    {
+        $this->fullAdress = $fullAdress;
 
         return $this;
     }

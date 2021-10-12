@@ -1,0 +1,30 @@
+App\Entity\User:
+    attributes:
+        firstName:
+            groups: ['read_user', 'write_user']
+        lastName:
+            groups: ['read_user', 'write_user'] 
+        email:
+            groups: ['read_user', 'write_user']
+        hash:
+            groups: ['read_user', 'write_user']    
+        slug:
+            groups: ['read_user', 'write_user']
+        ads:
+            groups: ['read_user', 'write_user']
+        boukings:
+            groups: ['read_user', 'write_user']
+        address:
+            groups: ['read_user', 'write_user'] 
+        phone:
+            groups: ['read_user', 'write_user']
+        avatarFile:
+            groups: ['read_user', 'write_user'] 
+        userRoles:
+            groups: ['read_user', 'write_user']
+              
+
+
+            
+            
+

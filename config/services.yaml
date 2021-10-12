@@ -35,7 +35,7 @@ services:
         autowire: false
         autoconfigure: false
         public: false 
-
+ 
 
     customsearch.date_filter:
         parent: 'App\Api\DateFilter'
@@ -53,6 +53,25 @@ services:
         autowire: false
         autoconfigure: false
         public: false  
+
+    searchad.gov_filter:
+        parent: 'api_platform.doctrine.orm.search_filter'
+        arguments: [ { gov: 'exact' } ]
+        tags:  [ 'api_platform.filter' ] 
+        autowire: false
+        autoconfigure: false  
+        public: false 
+
+
+    searchuser.mail_filter:
+        parent: 'api_platform.doctrine.orm.search_filter'
+        arguments: [ { email: 'exact' } ]
+        tags:  [ 'api_platform.filter' ] 
+        autowire: false
+        autoconfigure: false  
+        public: false 
+
+
   
 
 
