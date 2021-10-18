@@ -340,7 +340,7 @@ class User implements UserInterface, \Serializable
 
     public function MakeSlug()
     {
-        $tempSlug = $this->firstName . ' ' . $this->lastName;
+        $tempSlug = $this->firstName . ' ' . $this->lastName.rand(2,100);
         $mkSlug = preg_replace('/[^A-Za-z0-9-]+/', '-', $tempSlug);
         $this->slug = $mkSlug;
 

@@ -1,5 +1,8 @@
 App\Entity\User:
     attributes:
+        id:
+            groups: ['read_user', 'write_user']
+
         firstName:
             groups: ['read_user', 'write_user']
         lastName:
@@ -19,6 +22,8 @@ App\Entity\User:
         phone:
             groups: ['read_user', 'write_user']
         avatarFile:
+            groups: ['read_user', 'write_user'] 
+        descreption:
             groups: ['read_user', 'write_user'] 
         userRoles:
             groups: ['read_user', 'write_user']

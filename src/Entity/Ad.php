@@ -91,7 +91,7 @@ class Ad
     private $updateAt;
 
     /**
-     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="ad", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="ad", orphanRemoval=true , cascade={"persist"})
      */
     private $images;
 
@@ -127,7 +127,7 @@ class Ad
     private $type;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean" , nullable=true)
      */
     private $parking;
 
@@ -263,7 +263,7 @@ class Ad
         return $this->rooms;
     }
 
-    public function setRooms(int $rooms): self
+    public function setRooms(string $rooms): self
     {
         $this->rooms = $rooms;
 
@@ -305,7 +305,7 @@ class Ad
     public function makeSlug()
     {
 
-        $mkSlug = preg_replace('/[^A-Za-z0-9-]+/', '-', $this->title);
+        $mkSlug = preg_replace('/[^A-Za-z0-9-]+/', '-', $this->title.rand(2,100));
         $this->slug = $mkSlug;
 
     }

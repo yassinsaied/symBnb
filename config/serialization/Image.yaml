@@ -1,0 +1,15 @@
+App\Entity\Image:
+    attributes:
+
+        url:
+            groups: ['read_img', 'read_img', read_ad , write_ad ]
+        titleImage:
+            groups: ['read_img', 'read_img']
+
+       
+        
+
+
+            
+            
+

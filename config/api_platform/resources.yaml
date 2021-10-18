@@ -30,13 +30,25 @@ resources:
                 groups: ['write_user']
         collectionOperations:
             get:
-                filters: ['searchuser.mail_filter']
+                filters: ['searchUser.filter' ]
             post: ~    
         itemOperations: ~  
 
         
          
-    App\Entity\Image: ~
+    App\Entity\Image:
+        attributes:
+            normalization_context:
+                    groups: ['read_img']
+            denormalization_context:
+                    groups: ['write_img']
+            collectionOperations:
+                get:  ~ 
+                   
+                post: ~    
+            itemOperations: ~  
+
+
     App\Entity\Rating: ~
     App\Entity\Search: ~
     App\Entity\Role: ~

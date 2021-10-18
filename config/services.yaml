@@ -63,13 +63,15 @@ services:
         public: false 
 
 
-    searchuser.mail_filter:
+    searchUser.filter:
         parent: 'api_platform.doctrine.orm.search_filter'
-        arguments: [ { email: 'exact' } ]
+        arguments: [ { email: 'exact' , slug: 'exact' } ]
         tags:  [ 'api_platform.filter' ] 
         autowire: false
         autoconfigure: false  
-        public: false 
+        public: false
+    
+
 
 
   

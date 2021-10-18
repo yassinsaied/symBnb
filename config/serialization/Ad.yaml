@@ -1,61 +1,60 @@
 App\Entity\Ad:
     attributes:
         title:
-            groups: ['read_ad', 'write_ad']
+            groups: ['read_ad', 'write_ad' , read_user]
         slug:
-            groups: ['read_ad', 'write_ad'] 
+            groups: ['read_ad' , read_user] 
         price:
-            groups: ['read_ad', 'write_ad']
+            groups: ['read_ad', 'write_ad' , read_user]
         introduction:
-            groups: ['read_ad', 'write_ad']
+            groups: ['read_ad', 'write_ad' , read_user]
         description:
-            groups: ['read_ad', 'write_ad']
+            groups: ['read_ad', 'write_ad' , read_user]
         rooms:
-            groups: ['read_ad', 'write_ad']
+            groups: ['read_ad', 'write_ad' , read_user]
         createAt:
-            groups: ['read_ad', 'write_ad'] 
+            groups: ['read_ad' , read_user] 
         updateAt:
-            groups: ['read_ad', 'write_ad']
+            groups: ['read_ad' , read_user]
         boukings:
             groups: ['read_ad', 'write_ad'] 
         images:
-            groups: ['read_ad', 'write_ad']
+            groups: ['read_ad', 'write_ad' , read_user]
         author:
             groups: ['read_ad', 'write_ad']
         ratings:
-            groups: ['read_ad', 'write_ad']  
+            groups: ['read_ad', 'write_ad' , read_user]  
         avgRate:
-            groups: ['read_ad', 'write_ad'] 
+            groups: ['read_ad', 'write_ad' , read_user] 
         type:
-            groups: ['read_ad', 'write_ad'] 
+            groups: ['read_ad', 'write_ad' , read_user] 
         gov:
-            groups: ['read_ad', 'write_ad']    
+            groups: ['read_ad', 'write_ad' , read_user]    
         parking:
-            groups: ['read_ad', 'write_ad']  
+            groups: ['read_ad', 'write_ad' , read_user]  
         pool:
-            groups: ['read_ad', 'write_ad']
+            groups: ['read_ad', 'write_ad' , read_user]
         centralHeating:
-            groups: ['read_ad', 'write_ad']
+            groups: ['read_ad', 'write_ad' , read_user]
         centralCooling:
-            groups: ['read_ad', 'write_ad']  
+            groups: ['read_ad', 'write_ad' , read_user]  
         elevator:
-            groups: ['read_ad', 'write_ad']
+            groups: ['read_ad', 'write_ad' , read_user]
         spa:
-            groups: ['read_ad', 'write_ad']
+            groups: ['read_ad', 'write_ad' , read_user]
         stunningVieaw:
-            groups: ['read_ad', 'write_ad']
+            groups: ['read_ad', 'write_ad' , read_user]
         dishWasher:
-            groups: ['read_ad', 'write_ad']  
+            groups: ['read_ad', 'write_ad' , read_user]  
         surveillanceCamera:
-            groups: ['read_ad', 'write_ad']
+            groups: ['read_ad', 'write_ad' , read_user]
         petFrindly:
-            groups: ['read_ad', 'write_ad']
+            groups: ['read_ad', 'write_ad' , read_user]
         sweetRoom:
-            groups: ['read_ad', 'write_ad']
+            groups: ['read_ad', 'write_ad' , read_user]
         fullAdress:
-            groups: ['read_ad', 'write_ad'] 
-        image:
-            groups: ['read_ad', 'write_ad']      
+            groups: ['read_ad', 'write_ad' ,read_user] 
+       
         
 
 
