@@ -33,6 +33,11 @@ resources:
                 filters: ['searchUser.filter' ]
             post: ~    
         itemOperations: ~  
+        properties:
+            ads:
+                subresource:
+                    resourceClass: 'App\Entity\Ads'
+                    collection: true
 
         
          

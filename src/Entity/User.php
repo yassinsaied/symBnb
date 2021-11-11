@@ -335,12 +335,11 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\PrePersist
-     * @ORM\PreUpdate
-     */
+    */
 
     public function MakeSlug()
     {
-        $tempSlug = $this->firstName . ' ' . $this->lastName.rand(2,100);
+        $tempSlug = $this->firstName . ' ' . $this->lastName.rand(3,100);
         $mkSlug = preg_replace('/[^A-Za-z0-9-]+/', '-', $tempSlug);
         $this->slug = $mkSlug;
 

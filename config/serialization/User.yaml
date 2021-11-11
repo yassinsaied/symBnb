@@ -21,7 +21,7 @@ App\Entity\User:
             groups: ['read_user', 'write_user'] 
         phone:
             groups: ['read_user', 'write_user']
-        avatarFile:
+        avatar:
             groups: ['read_user', 'write_user'] 
         descreption:
             groups: ['read_user', 'write_user'] 
