@@ -16,12 +16,15 @@ class CustomSearchFilter extends AbstractFilter
             return;
         }
 
-       
         $alias = $queryBuilder->getRootAliases()[0];
-                $queryBuilder->andWhere(sprintf('%s.title LIKE :search OR %s.description LIKE :search OR %s.introduction LIKE :search',  $alias,  $alias, $alias))
-                             ->setParameter('search', '%'.$value.'%');
-                     
-    
+        // a param name that is guaranteed unique in this query
+        $valueParameter = $queryNameGenerator->generateParameterName('search');
+        $queryBuilder->andWhere(sprintf('%s.title LIKE :%s OR %s.description LIKE :%s OR %s.introduction LIKE :%s', $alias, $valueParameter, $alias, $valueParameter, $alias, $valueParameter))
+            ->setParameter($valueParameter, '%' . $value . '%');
+
+        // var_dump($queryBuilder->getDQL());exit; 
+        // var_dump($property, $value) ;           
+
 
     }
 
@@ -39,5 +42,4 @@ class CustomSearchFilter extends AbstractFilter
             ]
         ];
     }
-
 }

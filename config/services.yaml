@@ -30,7 +30,7 @@ services:
 
     customsearch.ad_filter:
         parent: 'App\Api\CustomSearchFilter'
-        arguments: [ '@doctrine','@request_stack', '@?logger', { introduction: 'partial' , description: 'partial' , title: 'partial' }]
+        arguments: ['@doctrine','@request_stack', '@?logger']
         tags: [ 'api_platform.filter' ]
         autowire: false
         autoconfigure: false
